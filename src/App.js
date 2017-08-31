@@ -17,13 +17,13 @@ export default function App(props) {
             <div>
                 <Nav />
                 <main>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/dashboard/:id" component={Dashboard} />
-                    <Route exact path="/landing" component={Landing} />
-                    <Route exact path="/account/:id" component={Account} />
-                    <Route exact path="/signup" component={SignUp} />
+                    {/*<Route exact path="/" component={Home} />*/}
+                    {/*<Route exact path="/dashboard/:id" component={Dashboard} />*/}
+                    {/*<Route exact path="/landing" component={Landing} />*/}
+                    {/*<Route exact path="/account/:id" component={Account} />*/}
+                    {/*<Route exact path="/signup" component={SignUp} />*/}
                 </main>
-                <Footer />
+                {/*<Footer />*/}
             </div>
         </Router>
     );

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './nav.css';
 
-export function Nav(props){
+export function nav(props){
     return (
         <div className="navigation-bar">
             <nav className="navbar-header">
