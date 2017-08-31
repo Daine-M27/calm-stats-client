@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Nav from './components/nav';
+import Home from './components/homepage';
+import Footer from './components/pagefooter';
+import Dashboard from './components/dashboard';
+import Account from './components/account';
+import Landing from './components/landing';
+import SignUp from './components/signup';
 
-class App extends Component {
-  render() {
+
+
+
+export default function App(props) {
+  render(){
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <Router>
+            <div>
+                <Nav />
+                <main>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/dashboard/:id" component={Dashboard} />
+                    <Route exact path="/landing" component={Landing} />
+                    <Route exact path="/account/:id" component={Account} />
+                    <Route exact path="/signup" component={SignUp} />
+                </main>
+                <Footer />
+            </div>
+        </Router>
     );
   }
-}
-
-export default App;
+};
