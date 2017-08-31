@@ -9,6 +9,8 @@ export function Nav(props){
         <div className="navigation-bar">
             <nav className="navbar-header">
                 <a className="nav-logo" href="/">Calm Stats</a>
+            </nav>
+        </div>
 
     )
 
