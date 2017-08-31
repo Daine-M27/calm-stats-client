@@ -12,7 +12,6 @@ import SignUp from './components/signup';
 
 
 export default function App(props) {
-  render(){
     return (
         <Router>
             <div>
@@ -28,5 +27,4 @@ export default function App(props) {
             </div>
         </Router>
     );
-  }
 };
