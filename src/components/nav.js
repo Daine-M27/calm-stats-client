@@ -1,20 +1,28 @@
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+
 import './css/nav.css';
 
+
+// I think i need to change this to be a class but im not sure.
 export default function Nav(props){
+
+
+    login() {
+        this.props.auth.login();
+    }
+
     return (
         <div className="navigation-bar">
             <nav className="navbar-header">
                 <a className="nav-logo" href="/">Calm Stats</a>
                 <ul className="navbar-right">
-                    <li><a className="nav-button" href="/login">Login</a></li>
+                    <li>
+                        <a className="nav-button" href="#" onClick={login}>Login</a>
+                    </li>
                 </ul>
             </nav>
         </div>
 
     )
-
 }
