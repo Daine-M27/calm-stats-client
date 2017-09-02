@@ -3,10 +3,10 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Nav from './components/nav';
 import Home from './components/homepage';
 import Footer from './components/pagefooter';
-import Dashboard from './components/dashboard';
-import Account from './components/account';
-import Landing from './components/landing';
-import SignUp from './components/signup';
+// import Dashboard from './components/dashboard';
+// import Account from './components/account';
+// import Landing from './components/landing';
+// import SignUp from './components/signup';
 
 
 
