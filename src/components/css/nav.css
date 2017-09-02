@@ -1,6 +1,11 @@
 *{
     margin: 0;
     padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -8,8 +13,11 @@
     list-style: none;
 }
 
+
 .navbar-header{
-    background-color: #427ddd;
+    width: 100%;
+    background-color: rgba(0, 127, 178, 0.75);
+
 
 }
 
@@ -22,12 +30,13 @@
 }
 
 .nav-logo:hover{
-    color: #0402bf;
+    color: #e9e3a7;
+    text-decoration: none;
 }
 
 .navbar-right{
     float: right;
-    padding-right: 1em;
+    padding-right: 3em;
     padding-top: .75em;
 }
 
@@ -40,5 +49,6 @@
 }
 
 .nav-button:hover{
-    color: #0402bf;
+    color: #e9e3a7;
+    text-decoration: none;
 }
