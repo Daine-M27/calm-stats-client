@@ -8,9 +8,9 @@ import './css/nav.css';
 export default function Nav(props){
 
 
-    login() {
-        this.props.auth.login();
-    }
+    // login() {
+    //     this.props.auth.login();
+    // }
 
     return (
         <div className="navigation-bar">
@@ -18,7 +18,7 @@ export default function Nav(props){
                 <a className="nav-logo" href="/">Calm Stats</a>
                 <ul className="navbar-right">
                     <li>
-                        <a className="nav-button" href="#" onClick={login}>Login</a>
+                        <a className="nav-button" href="#">Login</a>
                     </li>
                 </ul>
             </nav>
