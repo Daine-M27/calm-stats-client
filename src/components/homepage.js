@@ -5,12 +5,20 @@ import './css/homepage.css';
 export default function Home(props) {
     return (
         <div className="home-page">
-            <section className="upper-section">
-                <h1 className="main-title">Use daily meditation to improve your life!</h1>
-                <button className="signup-button">Create account</button>
+            <section className="col-md-12 upper-section bor">
+                <div className="col-md-12 bor">
+                    <h1 className="text-calm-blue text-vert-middle">Use daily meditation to improve your life!</h1>
+                </div>
+                <div>
+                    <button className="">Create account</button>
+                </div>
+
             </section>
-            <section>
-                <h2>Proven Benefits of Meditation</h2>
+            <section className="col-md-12">
+                <div className="col-md-12">
+                    <h2 className="text-calm-blue">Proven Benefits of Meditation</h2>
+                </div>
+
                 <div className="info-columns">
                     <div className="col-lg-4 col-md-4 col-sm -12 left-info">
                         <p>place holder</p>

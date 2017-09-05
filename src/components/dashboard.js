@@ -54,13 +54,13 @@ export default class Dashboard extends Component{
         // }
 
         return (
-
+            //wraps entire page
             <div className="col-md-12 pal">
 
 
-
+                {/*wraps elements to display on top of page*/}
                 <div className="col-md-12 top-half">
-
+                    {/*search bar and results*/}
                     <div className="col-md-4 pal">
 
                         <div className="col-md-12 bor pan" style={resultBoxStyle}>
@@ -103,12 +103,9 @@ export default class Dashboard extends Component{
                                 <div className="col-md-8 brs"> Video title</div>
                                 <div className="col-md-4 text-center">  04:16</div>
                             </div>
-
-
                         </div>
-
                     </div>
-
+                    {/* video player window*/}
                     <div className="col-md-8 pal ">
 
                         <div className="col-md-12 bor pan" style={playerBoxStyle}>
@@ -125,11 +122,9 @@ export default class Dashboard extends Component{
 
                 </div>
 
-
-                {/*<hr className="mtm mbl" />*/}
-
+                {/*wraps content for bottom of page*/}
                 <div className="col-md-12 bottom-half">
-
+                    {/*columns for data read out*/}
                     <div className="col-md-3 pal">
 
                         <div className="col-md-12 bor pan" style={statBoxStyle}>
@@ -244,7 +239,7 @@ export default class Dashboard extends Component{
 
 
 
-
+                    {/*container for chart display*/}
                     <div className="col-md-12 pal">
 
                         <div className="col-md-12 bor pan" style={chartBoxStyle}>
