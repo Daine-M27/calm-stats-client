@@ -7,6 +7,7 @@ import './css/dashboard.css'
 export default class Dashboard extends Component{
 
 
+
     render(){
 
         // const resultBoxStyle = {};
@@ -20,6 +21,13 @@ export default class Dashboard extends Component{
 
         }, 1000);
 
+        function sendSearch(searchTerm) {
+            fetch(serverUrl + '/' + searchTerm, {mode: 'no-cors'})
+                .then(function(response){
+                    console.log(response)
+                });
+            console.log('sent search to server')
+        }
 
         const resultBoxStyle =  {
             height: 598 + 'px'
@@ -44,6 +52,10 @@ export default class Dashboard extends Component{
         const mglassStyle = {
             verticalAlign: "-webkit-baseline-middle"
         };
+
+        const serverUrl = 'http://localhost:3001/api/v1/search';
+
+
 
 
 
@@ -70,7 +82,8 @@ export default class Dashboard extends Component{
                                     <input type="search" placeholder="Type to search..." className="form-control" style={searchBoxStyle}></input>
                                 </div>
 
-                                <div className="col-md-1 pan text-center cursorp">
+                                <div className="col-md-1 pan text-center cursorp"
+                                     onClick={sendSearch('grunge bands')}>
                                     <i className="fa fa-search" style={mglassStyle}></i>
                                 </div>
 
@@ -111,8 +124,8 @@ export default class Dashboard extends Component{
                         <div className="col-md-12 bor pan" style={playerBoxStyle}>
 
                             <YouTube
-                                videoId={'wNHZjbcaJ2A'}                  // defaults -> null
-                                id={'wNHZjbcaJ2A'}                       // defaults -> null
+                                videoId={'N4qCFFBrrgk'}                  // defaults -> null
+                                id={'N4qCFFBrrgk'}                       // defaults -> null
                             />
 
 
