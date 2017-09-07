@@ -1,12 +1,82 @@
 import React, { Component } from 'react';
 import {reduxForm, Field} from 'redux-form'
 import YouTube from 'react-youtube';
-
+import SearchResult from './searchResult'
 import './css/dashboard.css'
 
 export default class Dashboard extends Component{
+    constructor(props){
+        super(props)
+
+        this.serverUrl = 'http://localhost:3001/api/v1/search';
+        this.state = {
+            inputValue: "",
+            results: null,
+            videoId: null
+        }
+
+    }
+
+//sent over to searchResult component
+    loadVideo(videoId, context){
+        console.log(videoId)
+        context.setState({
+            videoId: videoId
+        });
+        console.log(context.state)
+    }
+
+    //move to action for youtube search
+    sendSearch() {
+
+        // console.log(this.state);
+        let resultRelay = {};
+        console.log(resultRelay, "empty");
+        const that = this;
+
+        fetch(this.serverUrl + '/' + this.state.inputValue)
+            .then(function(response){
+                return response.json();
+
+            })
+            .then(function(json) {
+                console.log('parsed json', json);
+                // resultRelay = {json};
+                // console.log(resultRelay, 'full');
 
 
+                const results = json.items.map((result, index) =>
+                    <SearchResult key={index} videoLoader={that.loadVideo} context={that} {...result} />
+                );
+
+                //
+                that.setState({
+                    results: results
+                });
+
+                console.log(results);
+
+            })
+            .then(
+                console.log(that.state.searchResults, 'fullstate')
+            )
+            .catch(function(ex) {
+            console.log('parsing failed', ex)
+        });
+
+        console.log('sent search to server');
+    }
+
+
+
+    updateInputValue(evt) {
+        this.setState({
+            inputValue: evt.target.value
+        });
+        console.log(evt.target.value);
+        console.log(this.state)
+
+    }
 
     render(){
 
@@ -21,13 +91,7 @@ export default class Dashboard extends Component{
 
         }, 1000);
 
-        function sendSearch(searchTerm) {
-            fetch(serverUrl + '/' + searchTerm, {mode: 'no-cors'})
-                .then(function(response){
-                    console.log(response)
-                });
-            console.log('sent search to server')
-        }
+
 
         const resultBoxStyle =  {
             height: 598 + 'px'
@@ -53,7 +117,7 @@ export default class Dashboard extends Component{
             verticalAlign: "-webkit-baseline-middle"
         };
 
-        const serverUrl = 'http://localhost:3001/api/v1/search';
+
 
 
 
@@ -79,12 +143,11 @@ export default class Dashboard extends Component{
 
                             <div className="col-md-12 pan bbs">
                                 <div className="col-md-11 pan brs">
-                                    <input type="search" placeholder="Type to search..." className="form-control" style={searchBoxStyle}></input>
+                                    <input type="search" placeholder="Type to search..." className="form-control" style={searchBoxStyle} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}></input>
                                 </div>
 
-                                <div className="col-md-1 pan text-center cursorp"
-                                     onClick={sendSearch('grunge bands')}>
-                                    <i className="fa fa-search" style={mglassStyle}></i>
+                                <div className="col-md-1 pan text-center cursorp">
+                                    <i className="fa fa-search" style={mglassStyle} onClick={() => {this.sendSearch()}}></i>
                                 </div>
 
                             </div>
@@ -98,24 +161,28 @@ export default class Dashboard extends Component{
                                 </div>
                             </div>
 
-                            <div className="col-md-12 pas bbs">
-                                <div className="col-md-8 brs"> Video title</div>
-                                <div className="col-md-4 text-center">  04:16</div>
+                            <div className="searchResults">
+                                {this.state.results}
                             </div>
 
-                            <div className="col-md-12 pas bbs">
-                                <div className="col-md-8 brs"> Video title</div>
-                                <div className="col-md-4 text-center">  04:16</div>
-                            </div>
+                            {/*<div className="col-md-12 pas bbs">*/}
+                                {/*<div className="col-md-8 brs"> Video title</div>*/}
+                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
+                            {/*</div>*/}
 
-                            <div className="col-md-12 pas bbs">
-                                <div className="col-md-8 brs"> Video title</div>
-                                <div className="col-md-4 text-center">  04:16</div>
-                            </div>
-                            <div className="col-md-12 pas bbs">
-                                <div className="col-md-8 brs"> Video title</div>
-                                <div className="col-md-4 text-center">  04:16</div>
-                            </div>
+                            {/*<div className="col-md-12 pas bbs">*/}
+                                {/*<div className="col-md-8 brs"> Video title</div>*/}
+                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
+                            {/*</div>*/}
+
+                            {/*<div className="col-md-12 pas bbs">*/}
+                                {/*<div className="col-md-8 brs"> Video title</div>*/}
+                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
+                            {/*</div>*/}
+                            {/*<div className="col-md-12 pas bbs">*/}
+                                {/*<div className="col-md-8 brs"> Video title</div>*/}
+                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                     {/* video player window*/}
@@ -123,10 +190,7 @@ export default class Dashboard extends Component{
 
                         <div className="col-md-12 bor pan" style={playerBoxStyle}>
 
-                            <YouTube
-                                videoId={'N4qCFFBrrgk'}                  // defaults -> null
-                                id={'N4qCFFBrrgk'}                       // defaults -> null
-                            />
+                            <YouTube videoId={this.state.videoId}/>
 
 
                         </div>
@@ -269,27 +333,10 @@ export default class Dashboard extends Component{
             </div>
 
 
-
-            // <section className="dashboard-upper">
-            //     <div className="results-sidebar">
-            //
-            //     </div>
-            //
-            //
-            //     <div className="search-box">
-            //
-            //
-            //         <form action="#" className="search-form">
-            //             <label htmlFor="query">Enter search term</label>
-            //             <input type="text" className="search-input" placeholder="Guided Meditations"/>
-            //             <button type="submit">Search</button>
-            //         </form>
-            //
-            //         <div className="player section">
-            //         </div>
-            //
-            //     </div>
-            // </section>
         )
     }
 }
+
+// const mapStateToProps = state => ({
+//     inputValue: state.
+// })

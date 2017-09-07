@@ -7,13 +7,15 @@ import Dashboard from './components/dashboard';
 // import Account from './components/account';
 import Landing from './components/landing';
 // import SignUp from './components/signup';
-
+import Auth from './Auth/Auth';
+import history from './history';
+const auth = new Auth();
 
 
 
 export default function App(props) {
     return (
-        <Router>
+        <Router history={history} component={App}>
             <div>
                 <Nav />
                 <main>
