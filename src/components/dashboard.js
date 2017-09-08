@@ -4,6 +4,7 @@ import YouTube from 'react-youtube';
 import SearchResult from './searchResult'
 import './css/dashboard.css'
 
+
 export default class Dashboard extends Component{
     constructor(props){
         super(props)
@@ -15,6 +16,10 @@ export default class Dashboard extends Component{
             videoId: null
         }
 
+    }
+
+    login() {
+        this.props.auth.login();
     }
 
 //sent over to searchResult component
@@ -79,7 +84,7 @@ export default class Dashboard extends Component{
     }
 
     render(){
-
+        const { isAuthenticated } = this.props.auth;
         // const resultBoxStyle = {};
         // const playerBoxStyle = {};
 
@@ -119,224 +124,155 @@ export default class Dashboard extends Component{
 
 
 
-
-
-
-
-
-
-        // const hrStyle = {
-        //     border
-        // }
-
         return (
             //wraps entire page
-            <div className="col-md-12 pal">
+            <div className="col-md-12">
+                {
+                    isAuthenticated() && (
+                        <div className="col-md-12 pal">
+                            <div className="col-md-12 top-half">
+                                <div className="col-md-4 pal">
+
+                                    <div className="col-md-12 bor pan" style={resultBoxStyle}>
+
+                                        <div className="col-md-12 pan bbs">
+                                            <div className="col-md-11 pan brs">
+                                                <input type="search" placeholder="Type to search..."
+                                                       className="form-control" style={searchBoxStyle}
+                                                       value={this.state.inputValue}
+                                                       onChange={evt => this.updateInputValue(evt)}></input>
+                                            </div>
+
+                                            <div className="col-md-1 pan text-center cursorp">
+                                                <i className="fa fa-search" style={mglassStyle} onClick={() => {
+                                                    this.sendSearch()
+                                                }}></i>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue">
+
+                                            <div className="col-md-8 brs"> The Name</div>
+                                            <div className="col-md-4 text-center">
+                                                <i className="fa fa-clock-o"></i>
+                                                &nbsp;Length
+                                            </div>
+                                        </div>
+
+                                        <div className="searchResults">
+                                            {this.state.results}
+                                        </div>
 
 
-                {/*wraps elements to display on top of page*/}
-                <div className="col-md-12 top-half">
-                    {/*search bar and results*/}
-                    <div className="col-md-4 pal">
-
-                        <div className="col-md-12 bor pan" style={resultBoxStyle}>
-
-                            <div className="col-md-12 pan bbs">
-                                <div className="col-md-11 pan brs">
-                                    <input type="search" placeholder="Type to search..." className="form-control" style={searchBoxStyle} value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}></input>
+                                    </div>
                                 </div>
-
-                                <div className="col-md-1 pan text-center cursorp">
-                                    <i className="fa fa-search" style={mglassStyle} onClick={() => {this.sendSearch()}}></i>
+                                <div className="col-md-8 pal ">
+                                    <div className="col-md-12 bor pan" style={playerBoxStyle}>
+                                        <YouTube videoId={this.state.videoId}/>
+                                    </div>
                                 </div>
-
                             </div>
 
-                            <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue">
+                            <div className="col-md-12 bottom-half">
+                                <div className="col-md-3 pal">
+                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
+                                            <i className="fa fa-sun-o"></i>
+                                            &nbsp;Daily
+                                        </div>
+                                        <div className="col-md-12 pal text-center spaced-out">
+                                            <div className="col-md-6 pal text-center spaced-out font14">
+                                                Number of Days
+                                            </div>
+                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
+                                                5
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-3 pal">
+                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
+                                            <i className="fa fa-sun-o"></i>
+                                            &nbsp;Weekly
+                                        </div>
 
-                                <div className="col-md-8 brs">  The Name</div>
-                                <div className="col-md-4 text-center">
-                                    <i className="fa fa-clock-o"></i>
-                                    &nbsp;Length
+                                        <div className="col-md-12 pal text-center spaced-out">
+                                            <div className="col-md-6 pal text-center spaced-out font14">
+                                                Number of Days
+                                            </div>
+
+                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
+                                                5
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-3 pal">
+
+                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
+                                            <i className="fa fa-sun-o"></i>
+                                            &nbsp;Monthly
+                                        </div>
+                                        <div className="col-md-12 pal text-center spaced-out">
+
+
+                                            <div className="col-md-6 pal text-center spaced-out font14">
+                                                Number of Days
+                                            </div>
+
+                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
+                                                5
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-3 pal">
+
+                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
+                                            <i className="fa fa-sun-o"></i>
+                                            &nbsp;Yearly
+                                        </div>
+                                        <div className="col-md-12 pal text-center spaced-out">
+                                            <div className="col-md-6 pal text-center spaced-out font14">
+                                                Number of Days
+                                            </div>
+                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
+                                                5
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-12 pal">
+                                    <div className="col-md-12 bor pan" style={chartBoxStyle}>
+                                        charts!
+                                    </div>
                                 </div>
                             </div>
-
-                            <div className="searchResults">
-                                {this.state.results}
-                            </div>
-
-                            {/*<div className="col-md-12 pas bbs">*/}
-                                {/*<div className="col-md-8 brs"> Video title</div>*/}
-                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-md-12 pas bbs">*/}
-                                {/*<div className="col-md-8 brs"> Video title</div>*/}
-                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-md-12 pas bbs">*/}
-                                {/*<div className="col-md-8 brs"> Video title</div>*/}
-                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
-                            {/*</div>*/}
-                            {/*<div className="col-md-12 pas bbs">*/}
-                                {/*<div className="col-md-8 brs"> Video title</div>*/}
-                                {/*<div className="col-md-4 text-center">  04:16</div>*/}
-                            {/*</div>*/}
                         </div>
-                    </div>
-                    {/* video player window*/}
-                    <div className="col-md-8 pal ">
-
-                        <div className="col-md-12 bor pan" style={playerBoxStyle}>
-
-                            <YouTube videoId={this.state.videoId}/>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                {/*wraps content for bottom of page*/}
-                <div className="col-md-12 bottom-half">
-                    {/*columns for data read out*/}
-                    <div className="col-md-3 pal">
-
-                        <div className="col-md-12 bor pan" style={statBoxStyle}>
-
-                            <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                <i className="fa fa-sun-o"></i>
-                                &nbsp;Daily
-                            </div>
-
-
-                            <div className="col-md-12 pal text-center spaced-out">
-
-
-                                <div className="col-md-6 pal text-center spaced-out font14">
-                                    Number of Days
-                                </div>
-
-                                <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                    5
-                                </div>
-
-
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-3 pal">
-
-                        <div className="col-md-12 bor pan" style={statBoxStyle}>
-                            <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                <i className="fa fa-sun-o"></i>
-                                &nbsp;Weekly
-                            </div>
-
-
-                            <div className="col-md-12 pal text-center spaced-out">
-
-
-                                <div className="col-md-6 pal text-center spaced-out font14">
-                                    Number of Days
-                                </div>
-
-                                <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                    5
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-3 pal">
-
-                        <div className="col-md-12 bor pan" style={statBoxStyle}>
-                            <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                <i className="fa fa-sun-o"></i>
-                                &nbsp;Monthly
-                            </div>
-
-
-                            <div className="col-md-12 pal text-center spaced-out">
-
-
-                                <div className="col-md-6 pal text-center spaced-out font14">
-                                    Number of Days
-                                </div>
-
-                                <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                    5
-                                </div>
-
-
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-3 pal">
-
-                        <div className="col-md-12 bor pan" style={statBoxStyle}>
-                            <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                <i className="fa fa-sun-o"></i>
-                                &nbsp;Yearly
-                            </div>
-
-                            <div className="col-md-12 pal text-center spaced-out">
-
-
-                                <div className="col-md-6 pal text-center spaced-out font14">
-                                    Number of Days
-                                </div>
-
-                                <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                    5
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    {/*container for chart display*/}
-                    <div className="col-md-12 pal">
-
-                        <div className="col-md-12 bor pan" style={chartBoxStyle}>
-                            charts!
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-
+                            )
+                }
+                {
+                    !isAuthenticated() && (
+                        <h4>
+                            You are not logged in! Please{' '}
+                            <a
+                                style={{cursor: 'pointer'}}
+                                onClick={this.login.bind(this)}
+                            >
+                                Log In
+                            </a>
+                            {' '}to continue.
+                        </h4>
+                    )
+                }
             </div>
-
-
         )
     }
 }
 
-// const mapStateToProps = state => ({
-//     inputValue: state.
-// })

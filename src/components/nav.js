@@ -17,6 +17,11 @@ export default class Nav extends React.Component {
         // this.props.auth.login();
     }
 
+    logout() {
+        const auth = new Auth();
+        auth.logout();
+    }
+
     render() {
         return (
             <div className="navigation-bar">
@@ -26,6 +31,9 @@ export default class Nav extends React.Component {
                         <li>
                             <a className="nav-button" href="#" onClick={this.login}>Login</a>
                         </li>
+                        <li>
+                            <a className="nav-button" href="#" onClick={this.logout}>Logout</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -34,60 +42,3 @@ export default class Nav extends React.Component {
     }
 }
 
-// I think i need to change this to be a class but im not sure.
-// export default function Nav(props){
-// export default class Auth {
-//
-//
-//     constructor(){
-//
-//     }
-//
-//     login() {
-//         this.props.auth.login();
-//     }
-//
-//     // return (
-//     //     <div className="navigation-bar">
-//     //         <nav className="navbar-header">
-//     //             <a className="nav-logo" href="/">Calm Stats</a>
-//     //             <ul className="navbar-right">
-//     //                 <li>
-//     //                     <a className="nav-button" href="#" onClick={login}>Login</a>
-//     //                 </li>
-//     //             </ul>
-//     //         </nav>
-//     //     </div>
-//     //
-//     // )
-// }
-
-
-//
-// import React from 'react';
-//
-// import './css/nav.css';
-//
-//
-// // I think i need to change this to be a class but im not sure.
-// export default function Nav(props){
-//
-//
-//     // login() {
-//     //     this.props.auth.login();
-//     // }
-//
-//     return (
-//         <div className="navigation-bar">
-//             <nav className="navbar-header">
-//                 <a className="nav-logo" href="/">Calm Stats</a>
-//                 <ul className="navbar-right">
-//                     <li>
-//                         <a className="nav-button" href="#">Login</a>
-//                     </li>
-//                 </ul>
-//             </nav>
-//         </div>
-//
-//     )
-// }
