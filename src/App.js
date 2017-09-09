@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Router, Route, Link} from 'react-router-dom';
 import Callback from './Callback/Callback';
 import Nav from './components/nav';
 import Home from './components/homepage';
@@ -25,7 +25,7 @@ export default function App(props) {
                     <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
                     <Route exact path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
                     <Route exact path="/landing" component={Landing} />
-                    <Route exact path="/callback" render={(props) => <Callback {...props} />} />
+                    <Route exact path="/callback" render={(props) => <Callback auth={auth} {...props} />} />
                     {/*<Route exact path="/account/:id" component={Account} />*/}
                     {/*<Route exact path="/signup" component={SignUp} />*/}
                 </main>

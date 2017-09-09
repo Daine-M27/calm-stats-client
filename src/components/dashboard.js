@@ -48,12 +48,9 @@ export default class Dashboard extends Component{
                 console.log('parsed json', json);
                 // resultRelay = {json};
                 // console.log(resultRelay, 'full');
-
-
                 const results = json.items.map((result, index) =>
                     <SearchResult key={index} videoLoader={that.loadVideo} context={that} {...result} />
                 );
-
                 //
                 that.setState({
                     results: results
@@ -85,14 +82,16 @@ export default class Dashboard extends Component{
 
     render(){
         const { isAuthenticated } = this.props.auth;
+        window.login = this.props.auth;
         // const resultBoxStyle = {};
         // const playerBoxStyle = {};
-
+        console.log(this.props.auth.handleAuthentication());
         setTimeout(function(){
             const windowHeight = window.innerHeight;
             const navHeight = document.querySelector(".navbar-header").offsetHeight;
             const leftOverHeight = windowHeight - navHeight;
             console.log(leftOverHeight);
+
 
         }, 1000);
 
@@ -132,7 +131,6 @@ export default class Dashboard extends Component{
                         <div className="col-md-12 pal">
                             <div className="col-md-12 top-half">
                                 <div className="col-md-4 pal">
-
                                     <div className="col-md-12 bor pan" style={resultBoxStyle}>
 
                                         <div className="col-md-12 pan bbs">
@@ -148,7 +146,6 @@ export default class Dashboard extends Component{
                                                     this.sendSearch()
                                                 }}></i>
                                             </div>
-
                                         </div>
 
                                         <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue">
@@ -163,8 +160,6 @@ export default class Dashboard extends Component{
                                         <div className="searchResults">
                                             {this.state.results}
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <div className="col-md-8 pal ">
