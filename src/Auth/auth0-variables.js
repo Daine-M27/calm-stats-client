@@ -1,5 +1,5 @@
 export const AUTH_CONFIG = {
-  domain: 'calmstats-client.auth0.com',
-  clientId: 'r62a9mCGklsVQo1lwnm28GZ10klFh5YC',
+  domain: 'calm-stats-test.auth0.com',
+  clientId: 'wU7GTLzGHVRvpJSi_ec2G50E_S2qdV1a',
   callbackUrl: 'http://localhost:3000/dashboard'
 }

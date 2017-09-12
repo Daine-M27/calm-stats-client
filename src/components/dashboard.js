@@ -7,14 +7,15 @@ import './css/dashboard.css'
 
 export default class Dashboard extends Component{
     constructor(props){
-        super(props)
+        super(props);
 
-        this.serverUrl = 'http://localhost:3001/api/v1/search';
+        this.serverUrl = 'http://localhost:3001/api/v1';
         this.state = {
             inputValue: "",
             results: null,
             videoId: null
-        }
+        };
+        this.state.dashboardData = ''
 
     }
 
@@ -36,10 +37,10 @@ export default class Dashboard extends Component{
 
         // console.log(this.state);
         let resultRelay = {};
-        console.log(resultRelay, "empty");
+        console.log(this.serverUrl, "sendSearch() server url");
         const that = this;
 
-        fetch(this.serverUrl + '/' + this.state.inputValue)
+        fetch(this.serverUrl + '/search/' + this.state.inputValue)
             .then(function(response){
                 return response.json();
 
@@ -59,11 +60,8 @@ export default class Dashboard extends Component{
                 console.log(results);
 
             })
-            .then(
-                console.log(that.state.searchResults, 'fullstate')
-            )
             .catch(function(ex) {
-            console.log('parsing failed', ex)
+                console.log('parsing failed', ex)
         });
 
         console.log('sent search to server');
@@ -80,12 +78,22 @@ export default class Dashboard extends Component{
 
     }
 
+    startSession() {
+
+        const dateString = new Date();
+        const dateMilliseconds =  dateString.getTime();
+        console.log(this.props, "all props");
+        fetch('http://localhost:3001/api/v1' + '/sessions/start/' + dateMilliseconds)
+            .then(function(response){
+                console.log(response)
+            })
+
+    }
+
     render(){
         const { isAuthenticated } = this.props.auth;
         window.login = this.props.auth;
-        // const resultBoxStyle = {};
-        // const playerBoxStyle = {};
-        console.log(this.props.auth.handleAuthentication());
+        //console.log(this.props.auth.handleAuthentication());
         setTimeout(function(){
             const windowHeight = window.innerHeight;
             const navHeight = document.querySelector(".navbar-header").offsetHeight;
@@ -98,7 +106,8 @@ export default class Dashboard extends Component{
 
 
         const resultBoxStyle =  {
-            height: 598 + 'px'
+            height: 598 + 'px',
+            overflowY: 'auto'
         };
 
         const playerBoxStyle =  {
@@ -121,6 +130,12 @@ export default class Dashboard extends Component{
             verticalAlign: "-webkit-baseline-middle"
         };
 
+        const fixedPosition = {
+           // position: 'fixed'
+        };
+
+
+
 
 
         return (
@@ -130,30 +145,30 @@ export default class Dashboard extends Component{
                     isAuthenticated() && (
                         <div className="col-md-12 pal">
                             <div className="col-md-12 top-half">
-                                <div className="col-md-4 pal">
+                                <div className="col-md-5 pal">
                                     <div className="col-md-12 bor pan" style={resultBoxStyle}>
 
                                         <div className="col-md-12 pan bbs">
-                                            <div className="col-md-11 pan brs">
+                                            <div className="col-md-11 pan brs" style={fixedPosition}>
                                                 <input type="search" placeholder="Type to search..."
                                                        className="form-control" style={searchBoxStyle}
                                                        value={this.state.inputValue}
                                                        onChange={evt => this.updateInputValue(evt)}></input>
                                             </div>
 
-                                            <div className="col-md-1 pan text-center cursorp">
+                                            <div className="col-md-1 pan text-center cursorp" style={fixedPosition}>
                                                 <i className="fa fa-search" style={mglassStyle} onClick={() => {
                                                     this.sendSearch()
                                                 }}></i>
                                             </div>
                                         </div>
 
-                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue">
+                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue" style={fixedPosition}>
 
-                                            <div className="col-md-8 brs"> The Name</div>
+                                            <div className="col-md-8 brs">Video Title</div>
                                             <div className="col-md-4 text-center">
-                                                <i className="fa fa-clock-o"></i>
-                                                &nbsp;Length
+                                                <i className="fa fa-film"></i>
+                                                &nbsp;Preview
                                             </div>
                                         </div>
 
@@ -162,9 +177,11 @@ export default class Dashboard extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-8 pal ">
+                                <div className="col-md-7 pal ">
                                     <div className="col-md-12 bor pan" style={playerBoxStyle}>
-                                        <YouTube videoId={this.state.videoId}/>
+                                        <YouTube videoId={this.state.videoId}
+                                                onPlay={this.startSession}
+                                        />
                                     </div>
                                 </div>
                             </div>
