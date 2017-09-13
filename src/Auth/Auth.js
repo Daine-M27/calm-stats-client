@@ -29,29 +29,47 @@ export default class Auth {
 
   handleAuthentication() {
     console.log('this is the handleAuthentication function');
-    // this.auth0.parseHash((err, authResult) => {
-    //   console.log(authResult, 'authResult');
-    //   if (authResult && authResult.accessToken && authResult.idToken) {
-    //     this.setSession(authResult);
-    //     history.replace('/dashboard');
-    //   } else if (err) {
-    //     history.replace('/');
-    //     console.log(err);
-    //     alert(`Error: ${err.error}. Check the console for further details.`);
-    //   }
-    // });
+    this.auth0.parseHash((err, authResult) => {
+      //console.log(authResult, 'authResult');
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+        //console.log('redirect coming')
+        history.replace('/dashboard');
+      } else if (err) {
+        history.replace('/');
+        console.log(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
   }
 
   setSession(authResult) {
-    // Set the time that the access token will expire at
-    console.log(authResult, 'authresult  at setSession()');
-    let expiresAt = JSON.stringify((authResult.expiresIn * 14400) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
-    console.log('set session log');
-    fetch(this.serverUrl + authResult.accessToken)
-        .then(console.log('token sent'));
+      // Set the time that the access token will expire at
+      console.log(authResult, 'authresult  at setSession()');
+      let expiresAt = JSON.stringify((authResult.expiresIn * 14400) + new Date().getTime());
+      localStorage.setItem('access_token', authResult.accessToken);
+      localStorage.setItem('id_token', authResult.idToken);
+      localStorage.setItem('expires_at', expiresAt);
+      console.log('set session log');
+      console.log(this.serverUrl, authResult.accessToken)
+      fetch(this.serverUrl + authResult.accessToken)
+          .then(function (response) {
+              //console.log(response, 'response from set session');
+              return response.json();
+          })
+          .then(function(json) {
+              console.log('parsed json', json)
+          })
+          .catch(function(ex) {
+              console.log('parsing failed', ex)
+      })
+          // .then(function (json) {
+          //     console.log(json, 'parsed user id json')
+          // })
+          // .catch(function (ex) {
+          //     console.log('parsing failed', ex)
+          // })
+
 
     // navigate to the home route
     // history.replace('/dashboard');

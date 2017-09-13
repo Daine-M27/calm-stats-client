@@ -13,7 +13,8 @@ export default class Dashboard extends Component{
         this.state = {
             inputValue: "",
             results: null,
-            videoId: null
+            videoId: null,
+            calmStatsId: ""
         };
         this.state.dashboardData = ''
 
@@ -25,7 +26,7 @@ export default class Dashboard extends Component{
 
 //sent over to searchResult component
     loadVideo(videoId, context){
-        console.log(videoId)
+        console.log(videoId);
         context.setState({
             videoId: videoId
         });
@@ -62,8 +63,7 @@ export default class Dashboard extends Component{
             })
             .catch(function(ex) {
                 console.log('parsing failed', ex)
-        });
-
+            });
         console.log('sent search to server');
     }
 
@@ -77,12 +77,12 @@ export default class Dashboard extends Component{
         console.log(this.state)
 
     }
-
+//called from playbutton in youtube component
     startSession() {
 
         const dateString = new Date();
         const dateMilliseconds =  dateString.getTime();
-        console.log(this.props, "all props");
+        //console.log(this.props, "all props");
         fetch('http://localhost:3001/api/v1' + '/sessions/start/' + dateMilliseconds)
             .then(function(response){
                 console.log(response)
@@ -90,16 +90,21 @@ export default class Dashboard extends Component{
 
     }
 
+    componentDidMount(){
+        this.props.auth.handleAuthentication();
+    }
+
+
     render(){
         const { isAuthenticated } = this.props.auth;
-        window.login = this.props.auth;
+        //window.login = this.props.auth;
         //console.log(this.props.auth.handleAuthentication());
+
         setTimeout(function(){
             const windowHeight = window.innerHeight;
             const navHeight = document.querySelector(".navbar-header").offsetHeight;
             const leftOverHeight = windowHeight - navHeight;
             console.log(leftOverHeight);
-
 
         }, 1000);
 
