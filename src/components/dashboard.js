@@ -207,6 +207,27 @@ export default class Dashboard extends Component{
 
     }
 
+
+    stopMeditationSession(){
+        const calmId = this.state.calmStatsId;
+
+        const dateString = new Date();
+        const dateMilliseconds =  dateString.getTime();
+
+        fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
+            .then(function (response) {
+                //console.log(response, 'response from set session');
+                return response.json();
+            })
+            .then(function(json) {
+                console.log('parsed json', json)
+            })
+            .catch(function(ex) {
+                console.log('parsing failed', ex)
+            })
+
+    }
+
     componentDidMount(){
         this.getUserInfo();
 
@@ -310,6 +331,7 @@ export default class Dashboard extends Component{
                                         <YouTube videoId={this.state.videoId}
                                                  opts={opts}
                                                  onPlay={this.startMeditationSession.bind(this)}
+                                                 onPause={this.stopMeditationSession.bind(this)}
                                         />
                                     </div>
                                 </div>
