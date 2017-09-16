@@ -32,9 +32,10 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       //console.log(authResult, 'authResult');
       if (authResult && authResult.accessToken && authResult.idToken) {
+          console.log('this is calling setSession()');
         this.setSession(authResult);
         //console.log('redirect coming')
-        history.replace('/dashboard');
+
       } else if (err) {
         history.replace('/');
         console.log(err);
@@ -51,7 +52,8 @@ export default class Auth {
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
       console.log('set session log');
-      console.log(this.serverUrl, authResult.accessToken)
+      console.log(this.serverUrl, authResult.accessToken, 'setSession accessToken');
+      history.replace('/dashboard');
       fetch(this.serverUrl + authResult.accessToken)
           .then(function (response) {
               //console.log(response, 'response from set session');
@@ -59,7 +61,9 @@ export default class Auth {
           })
           .then(function(json) {
               console.log('parsed json', json)
+
           })
+
           .catch(function(ex) {
               console.log('parsing failed', ex)
       })

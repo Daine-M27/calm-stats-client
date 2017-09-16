@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import './css/searchResults.css'
 
-export default class searchResult extends Component {
+export default class SearchResult extends Component {
 
     constructor(props){
         super(props);

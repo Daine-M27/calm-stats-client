@@ -1,23 +1,86 @@
 import React, { Component } from 'react';
 import {reduxForm, Field} from 'redux-form'
 import YouTube from 'react-youtube';
-import SearchResult from './searchResult'
-import './css/dashboard.css'
-
+import SearchResult from './searchResult';
+import StatisticSheet from './statisticSheet';
+import './css/dashboard.css';
+import DailyChart from './dailyChart';
+import auth0 from 'auth0-js';
 
 export default class Dashboard extends Component{
     constructor(props){
         super(props);
 
+        this.props.auth.handleAuthentication();
         this.serverUrl = 'http://localhost:3001/api/v1';
         this.state = {
             inputValue: "",
             results: null,
             videoId: null,
-            calmStatsId: ""
-        };
-        this.state.dashboardData = ''
+            calmStatsId: "",
+            currentStatistics: null,
+            averageStatistics: null,
+            recordStatistics: null,
 
+        };
+
+        this.state.stats = {
+            currentStats:[
+                {
+                    title: "Sessions for last 7 days:",
+                    value: 4
+                },
+                {
+                    title: "Sessions for last 30 days:",
+                    value: 23
+                },
+                {
+                    title: "Sessions for 365 days:",
+                    value: 227
+                },
+                {
+                    title: "Current daily streak:",
+                    value: 42
+                }
+            ],
+            averageStats:[
+                {
+                    title: "Per Week Average:",
+                    value: "2 Hrs 34 Mins"
+                },
+                {
+                    title: "Per Month Average:",
+                    value: "20 Hrs 24 Mins"
+                },
+                {
+                    title: "Per Session Average:",
+                    value: "28 Mins"
+                },
+                {
+                    title: "Daily streak average",
+                    value: "23 Days"
+                },
+
+            ],
+            recordStats:[
+                {
+                    title: "Total time in meditation:",
+                    value: "4 Days 22 Hrs 12 Mins"
+                },
+                {
+                    title: "Total Sessions:",
+                    value: "250"
+                },
+                {
+                    title: "Longest daily streak:",
+                    value: "72 Days"
+                },
+                {
+                    title: "Longest Session:",
+                    value: "43 Mins"
+                },
+            ]
+        }
     }
 
     login() {
@@ -35,9 +98,6 @@ export default class Dashboard extends Component{
 
     //move to action for youtube search
     sendSearch() {
-
-        // console.log(this.state);
-        let resultRelay = {};
         console.log(this.serverUrl, "sendSearch() server url");
         const that = this;
 
@@ -58,11 +118,11 @@ export default class Dashboard extends Component{
                     results: results
                 });
 
-                console.log(results);
+                //console.log(results);
 
             })
             .catch(function(ex) {
-                console.log('parsing failed', ex)
+                console.log('parsing failed send search function', ex)
             });
         console.log('sent search to server');
     }
@@ -75,30 +135,93 @@ export default class Dashboard extends Component{
         });
         console.log(evt.target.value);
         console.log(this.state)
+    }
+
+
+
+    //gets all data from mongodb through get request to server
+    getUserInfo(){
+        console.log('get user info ');
+        const that = this;
+        console.log(localStorage.getItem('access_token'));
+        if(localStorage.getItem('access_token')){
+
+            fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
+                .then(function (response) {
+                    //console.log(response, 'get user info response');
+                    return response.json();
+                })
+                .then(function(json) {
+                    console.log('parsed json', json);
+                    const id = json.calmStatsId;
+                    console.log(id, 'id from getUserInfo');
+                    that.setState({
+                        calmStatsId: id
+                    })
+                    // const statisticsLineCurrent = json.currentStats.map((result, index) =>
+                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                    // );
+                    // const statisticsLineAverage = json.averageStats.map((result, index) =>
+                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                    // );
+                    // const statisticsLineRecord = json.recordStats.map((result, index) =>
+                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                    // );
+                    // that.setState({
+                    //     currentStatistics: statisticsLineCurrent,
+                    //     averageStatistics: statisticsLineAverage,
+                    //     recordStatistics: statisticsLineRecord
+                    // })
+                })
+                .then(function(){
+                    console.log(that.state.calmStatsId)
+                })
+                .catch(function(ex) {
+                    console.log('parsing failed', ex)
+                })
+        }
 
     }
+
+
 //called from playbutton in youtube component
-    startSession() {
+    startMeditationSession() {
+        //console.log(this.state, 'start meditation session')
+
+        const calmId = this.state.calmStatsId;
 
         const dateString = new Date();
         const dateMilliseconds =  dateString.getTime();
-        //console.log(this.props, "all props");
-        fetch('http://localhost:3001/api/v1' + '/sessions/start/' + dateMilliseconds)
-            .then(function(response){
-                console.log(response)
+
+        fetch(this.serverUrl + '/sessions/start/' + dateMilliseconds+ '/' + calmId)
+            .then(function (response) {
+                //console.log(response, 'response from set session');
+                return response.json();
+            })
+            .then(function(json) {
+                console.log('parsed json', json)
+            })
+            .catch(function(ex) {
+                console.log('parsing failed', ex)
             })
 
     }
 
     componentDidMount(){
-        this.props.auth.handleAuthentication();
+        this.getUserInfo();
+
+
+
     }
 
 
     render(){
         const { isAuthenticated } = this.props.auth;
-        //window.login = this.props.auth;
-        //console.log(this.props.auth.handleAuthentication());
+        const opts = {
+            height: '100%',
+            width: '100%',
+
+        };
 
         setTimeout(function(){
             const windowHeight = window.innerHeight;
@@ -185,89 +308,49 @@ export default class Dashboard extends Component{
                                 <div className="col-md-7 pal ">
                                     <div className="col-md-12 bor pan" style={playerBoxStyle}>
                                         <YouTube videoId={this.state.videoId}
-                                                onPlay={this.startSession}
+                                                 opts={opts}
+                                                 onPlay={this.startMeditationSession.bind(this)}
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="col-md-12 bottom-half">
-                                <div className="col-md-3 pal">
+
+                                <div className="col-md-4 pal">
                                     <div className="col-md-12 bor pan" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
-                                            &nbsp;Daily
+                                            &nbsp;Current
                                         </div>
-                                        <div className="col-md-12 pal text-center spaced-out">
-                                            <div className="col-md-6 pal text-center spaced-out font14">
-                                                Number of Days
-                                            </div>
-                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                                5
-                                            </div>
-                                        </div>
+                                        {this.state.currentStatistics}
                                     </div>
                                 </div>
-                                <div className="col-md-3 pal">
-                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
-                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                            <i className="fa fa-sun-o"></i>
-                                            &nbsp;Weekly
-                                        </div>
-
-                                        <div className="col-md-12 pal text-center spaced-out">
-                                            <div className="col-md-6 pal text-center spaced-out font14">
-                                                Number of Days
-                                            </div>
-
-                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                                5
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-3 pal">
+                                <div className="col-md-4 pal">
 
                                     <div className="col-md-12 bor pan" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
-                                            &nbsp;Monthly
+                                            &nbsp;Average
                                         </div>
-                                        <div className="col-md-12 pal text-center spaced-out">
-
-
-                                            <div className="col-md-6 pal text-center spaced-out font14">
-                                                Number of Days
-                                            </div>
-
-                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                                5
-                                            </div>
-                                        </div>
+                                        {this.state.averageStatistics}
                                     </div>
                                 </div>
 
-                                <div className="col-md-3 pal">
+                                <div className="col-md-4 pal">
 
                                     <div className="col-md-12 bor pan" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
-                                            &nbsp;Yearly
+                                            &nbsp;Records
                                         </div>
-                                        <div className="col-md-12 pal text-center spaced-out">
-                                            <div className="col-md-6 pal text-center spaced-out font14">
-                                                Number of Days
-                                            </div>
-                                            <div className="col-md-6 pal text-center spaced-out text-dark-gray">
-                                                5
-                                            </div>
-                                        </div>
+                                        {this.state.recordStatistics}
                                     </div>
                                 </div>
 
                                 <div className="col-md-12 pal">
                                     <div className="col-md-12 bor pan" style={chartBoxStyle}>
-                                        charts!
+                                        <DailyChart/>
                                     </div>
                                 </div>
                             </div>
