@@ -29,6 +29,7 @@ export default function App(props) {
                     {/*<Route exact path="/account/:id" component={Account} />*/}
                     {/*<Route exact path="/signup" component={SignUp} />*/}
                 </main>
+                {/* <Footer></Footer> */}
             </div>
         </Router>
     );

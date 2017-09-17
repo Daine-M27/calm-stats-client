@@ -23,16 +23,31 @@ export default class Nav extends React.Component {
     }
 
     render() {
+
+        const navHeaderStyle = {paddingTop: "5px"};
+        const logoStyle = {width: "35px"};
+
         return (
             <div className="navigation-bar">
-                <nav className="navbar-header">
-                    <a className="nav-logo" href="/">Calm Stats</a>
-                    <ul className="navbar-right">
+                <nav className="navbar-header" style={navHeaderStyle}>
+                    <a className="nav-logo" href="/">                        
+                        <span className="spaced-out">
+                            <img src="logo.png" style={logoStyle} />
+                            &nbsp;Calm Stats
+                        </span>                        
+                    </a>
+                    <ul className="nav navbar-nav navbar-right pan">
                         <li>
-                            <a className="nav-button" href="#" onClick={this.login}>Login</a>
+                            <a className="nav-button" href="#" onClick={this.login}>
+                                <i className="fa fa-sign-in"></i>
+                                &nbsp;&nbsp;Login
+                            </a>
                         </li>
                         <li>
-                            <a className="nav-button" href="#" onClick={this.logout}>Logout</a>
+                            <a className="nav-button" href="#" onClick={this.logout}>
+                                <i className="fa fa-sign-out"></i>
+                                &nbsp;&nbsp;Logout
+                            </a>
                         </li>
                     </ul>
                 </nav>

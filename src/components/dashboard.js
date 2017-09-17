@@ -289,13 +289,13 @@ export default class Dashboard extends Component{
 
         return (
             //wraps entire page
-            <div className="col-md-12">
+            <div className="col-md-12 bg-calm">
                 {
                     isAuthenticated() && (
                         <div className="col-md-12 pal">
                             <div className="col-md-12 top-half">
                                 <div className="col-md-5 pal">
-                                    <div className="col-md-12 bor pan" style={resultBoxStyle}>
+                                    <div className="col-md-12 pan bg-white" style={resultBoxStyle}>
 
                                         <div className="col-md-12 pan bbs">
                                             <div className="col-md-11 pan brs" style={fixedPosition}>
@@ -340,7 +340,7 @@ export default class Dashboard extends Component{
                             <div className="col-md-12 bottom-half">
 
                                 <div className="col-md-4 pal">
-                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                    <div className="col-md-12 bor pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
                                             &nbsp;Current
@@ -350,7 +350,7 @@ export default class Dashboard extends Component{
                                 </div>
                                 <div className="col-md-4 pal">
 
-                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                    <div className="col-md-12 bor pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
                                             &nbsp;Average
@@ -361,7 +361,7 @@ export default class Dashboard extends Component{
 
                                 <div className="col-md-4 pal">
 
-                                    <div className="col-md-12 bor pan" style={statBoxStyle}>
+                                    <div className="col-md-12 bor pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
                                             &nbsp;Records
@@ -371,7 +371,7 @@ export default class Dashboard extends Component{
                                 </div>
 
                                 <div className="col-md-12 pal">
-                                    <div className="col-md-12 bor pan" style={chartBoxStyle}>
+                                    <div className="col-md-12 bor pan bg-white" style={chartBoxStyle}>
                                         <DailyChart/>
                                     </div>
                                 </div>
