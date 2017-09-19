@@ -216,11 +216,11 @@ export default class Dashboard extends Component{
 
         fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
             .then(function (response) {
-                //console.log(response, 'response from set session');
+                console.log(response);
                 return response.json();
             })
             .then(function(json) {
-                console.log('parsed json', json)
+                console.log('parsed json', json.stat)
             })
             .catch(function(ex) {
                 console.log('parsing failed', ex)
@@ -256,6 +256,10 @@ export default class Dashboard extends Component{
 
         const resultBoxStyle =  {
             height: 598 + 'px',
+            overflowY: 'auto'
+        };
+
+        const overFlow = {
             overflowY: 'auto'
         };
 
@@ -295,24 +299,24 @@ export default class Dashboard extends Component{
                         <div className="col-md-12 pal">
                             <div className="col-md-12 top-half">
                                 <div className="col-md-5 pal">
-                                    <div className="col-md-12 pan bg-white" style={resultBoxStyle}>
+                                    <div className="col-md-12 pan bg-white" style={resultBoxStyle} >
 
                                         <div className="col-md-12 pan bbs">
-                                            <div className="col-md-11 pan brs" style={fixedPosition}>
+                                            <div className="col-md-11 pan brs" >
                                                 <input type="search" placeholder="Type to search..."
                                                        className="form-control" style={searchBoxStyle}
                                                        value={this.state.inputValue}
                                                        onChange={evt => this.updateInputValue(evt)}></input>
                                             </div>
 
-                                            <div className="col-md-1 pan text-center cursorp" style={fixedPosition}>
+                                            <div className="col-md-1 pan text-center cursorp" >
                                                 <i className="fa fa-search" style={mglassStyle} onClick={() => {
                                                     this.sendSearch()
                                                 }}></i>
                                             </div>
                                         </div>
 
-                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue" style={fixedPosition}>
+                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue" >
 
                                             <div className="col-md-8 brs">Video Title</div>
                                             <div className="col-md-4 text-center">
@@ -338,9 +342,14 @@ export default class Dashboard extends Component{
                             </div>
 
                             <div className="col-md-12 bottom-half">
+                                <div className="col-md-12 pal">
+                                    <div className="col-md-12 pan " style={chartBoxStyle}>
+                                        <DailyChart/>
+                                    </div>
+                                </div>
 
                                 <div className="col-md-4 pal">
-                                    <div className="col-md-12 bor pan bg-white" style={statBoxStyle}>
+                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
                                             &nbsp;Current
@@ -350,7 +359,7 @@ export default class Dashboard extends Component{
                                 </div>
                                 <div className="col-md-4 pal">
 
-                                    <div className="col-md-12 bor pan bg-white" style={statBoxStyle}>
+                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
                                             &nbsp;Average
@@ -361,7 +370,7 @@ export default class Dashboard extends Component{
 
                                 <div className="col-md-4 pal">
 
-                                    <div className="col-md-12 bor pan bg-white" style={statBoxStyle}>
+                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
                                             &nbsp;Records
@@ -370,11 +379,7 @@ export default class Dashboard extends Component{
                                     </div>
                                 </div>
 
-                                <div className="col-md-12 pal">
-                                    <div className="col-md-12 bor pan bg-white" style={chartBoxStyle}>
-                                        <DailyChart/>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                             )

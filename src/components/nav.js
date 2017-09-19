@@ -31,10 +31,13 @@ export default class Nav extends React.Component {
             <div className="navigation-bar">
                 <nav className="navbar-header" style={navHeaderStyle}>
                     <a className="nav-logo" href="/">                        
-                        <span className="spaced-out">
+                        <span className="">
                             <img src="logo.png" style={logoStyle} />
-                            &nbsp;Calm Stats
-                        </span>                        
+                            &nbsp;
+                        </span>
+                        <span className="spaced-out pts">
+                            Calm Stats
+                        </span>
                     </a>
                     <ul className="nav navbar-nav navbar-right pan">
                         <li>

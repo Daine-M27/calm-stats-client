@@ -1023,13 +1023,13 @@ div li>span {
 }
 
 .bg-calm {
-    background: rgba(183,222,237,1);
-    background: -moz-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(183,222,237,1)), color-stop(50%, rgba(113,206,239,1)), color-stop(51%, rgba(33,180,226,1)), color-stop(100%, rgba(183,222,237,1)));
-    background: -webkit-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-    background: -o-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-    background: -ms-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-    background: linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1 );
+    background: rgba(0,127,178,1);
+    background: -moz-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,127,178,1)), color-stop(9%, rgba(0,127,178,1)), color-stop(24%, rgba(0,127,178,1)), color-stop(94%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: -o-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007fb2', endColorstr='#ffffff', GradientType=0 );
 }
 
