@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import './css/statisticSheet.css'
+import {connect} from 'react-redux';
 
-export default class StatisticSheet extends Component {
+class StatisticSheet extends Component {
 
     constructor(props){
         super(props);
@@ -23,3 +24,10 @@ export default class StatisticSheet extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    
+}
+
+
+export default connect(mapStateToProps)(StatisticSheet);

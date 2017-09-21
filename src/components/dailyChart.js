@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, CartesianAxis, Tooltip, Legend} from 'recharts';
 import ResponsiveContainer from "recharts/es6/component/ResponsiveContainer";
@@ -18,7 +19,8 @@ const data = [
     {date: 'Sep 13', time: 33},
     {date: 'Sep 14', time: 25}
 ];
-export default class DailyChart extends Component{
+
+class DailyChart extends Component{
     render () {
         return (
             <ResponsiveContainer height='100%' width='100%'>
@@ -35,3 +37,9 @@ export default class DailyChart extends Component{
         );
     }
 }
+
+function mapStateToProps() {
+
+}
+
+export default connect(mapStateToProps)(DailyChart)

@@ -1,13 +1,18 @@
+import {
+    getUserInfo, logIn, updateInputValue, searchYoutube, startSession, stopSession, toggleInfoModal
+} from '../actions';
 import React, { Component } from 'react';
-import {reduxForm, Field} from 'redux-form'
 import YouTube from 'react-youtube';
-import SearchResult from './searchResult';
-import StatisticSheet from './statisticSheet';
+// import SearchResult from './searchResult';
+// import StatisticSheet from './statisticSheet';
 import './css/dashboard.css';
 import DailyChart from './dailyChart';
-import auth0 from 'auth0-js';
+// import auth0 from 'auth0-js';
+import {connect} from 'react-redux';
 
-export default class Dashboard extends Component{
+
+
+class Dashboard extends Component{
     constructor(props){
         super(props);
 
@@ -27,20 +32,20 @@ export default class Dashboard extends Component{
         this.state.stats = {
             currentStats:[
                 {
-                    title: "Sessions for last 7 days:",
-                    value: 4
+                    title: "Total number of sessions:",
+                    value: 45
                 },
                 {
-                    title: "Sessions for last 30 days:",
-                    value: 23
+                    title: "Total time in meditation:",
+                    value: '1 Days :55 Mins: 30 Secs'
                 },
                 {
-                    title: "Sessions for 365 days:",
-                    value: 227
+                    title: "Average session length:",
+                    value: '33 Mins: 23 Secs'
                 },
                 {
-                    title: "Current daily streak:",
-                    value: 42
+                    title: "Current daily meditation streak:",
+                    value: 37
                 }
             ],
             averageStats:[
@@ -84,153 +89,167 @@ export default class Dashboard extends Component{
     }
 
     login() {
-        this.props.auth.login();
+        this.props.dispatch(logIn());
+        //this.props.auth.login();
     }
 
 //sent over to searchResult component
-    loadVideo(videoId, context){
-        console.log(videoId);
-        context.setState({
-            videoId: videoId
-        });
-        console.log(context.state)
-    }
+
+    //sent this over to the sendSearch in the reducer so it can be passed to the searchResult component ****
+    // loadVideo(videoId, context){
+    //     //console.log(videoId);
+    //     context.setState({
+    //         videoId: videoId
+    //     });
+    //     console.log(context.state)
+    // }
 
     //move to action for youtube search
     sendSearch() {
-        console.log(this.serverUrl, "sendSearch() server url");
-        const that = this;
-
-        fetch(this.serverUrl + '/search/' + this.state.inputValue)
-            .then(function(response){
-                return response.json();
-
-            })
-            .then(function(json) {
-                console.log('parsed json', json);
-                // resultRelay = {json};
-                // console.log(resultRelay, 'full');
-                const results = json.items.map((result, index) =>
-                    <SearchResult key={index} videoLoader={that.loadVideo} context={that} {...result} />
-                );
-                //
-                that.setState({
-                    results: results
-                });
-
-                //console.log(results);
-
-            })
-            .catch(function(ex) {
-                console.log('parsing failed send search function', ex)
-            });
-        console.log('sent search to server');
+        const searchTerm = this.props.inputValue;            //       do i need this if the reducer has access to it     ???????
+        this.props.dispatch(searchYoutube(searchTerm))
+        // console.log(this.serverUrl, "sendSearch() server url");
+        // const that = this;
+        //
+        // fetch(this.serverUrl + '/search/' + this.state.inputValue)
+        //     .then(function(response){
+        //         return response.json();
+        //
+        //     })
+        //     .then(function(json) {
+        //         console.log('parsed json', json);
+        //         // resultRelay = {json};
+        //         // console.log(resultRelay, 'full');
+        //         const results = json.items.map((result, index) =>
+        //             <SearchResult key={index} videoLoader={that.loadVideo} context={that} {...result} />
+        //         );
+        //         //
+        //         that.setState({
+        //             results: results
+        //         });
+        //
+        //         //console.log(results);
+        //
+        //     })
+        //     .catch(function(ex) {
+        //         console.log('parsing failed send search function', ex)
+        //     });
+        // console.log('sent search to server');
     }
 
 
 
     updateInputValue(evt) {
-        this.setState({
-            inputValue: evt.target.value
-        });
-        console.log(evt.target.value);
-        console.log(this.state)
+        const inputValue = evt.target.value;
+        this.props.dispatch(updateInputValue(inputValue))
+        // this.setState({
+        //     inputValue: evt.target.value
+        // });
+        // console.log(evt.target.value);
     }
 
 
 
     //gets all data from mongodb through get request to server
     getUserInfo(){
-        console.log('get user info ');
-        const that = this;
-        console.log(localStorage.getItem('access_token'));
-        if(localStorage.getItem('access_token')){
-
-            fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
-                .then(function (response) {
-                    //console.log(response, 'get user info response');
-                    return response.json();
-                })
-                .then(function(json) {
-                    console.log('parsed json', json);
-                    const id = json.calmStatsId;
-                    console.log(id, 'id from getUserInfo');
-                    that.setState({
-                        calmStatsId: id
-                    })
-                    // const statisticsLineCurrent = json.currentStats.map((result, index) =>
-                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                    // );
-                    // const statisticsLineAverage = json.averageStats.map((result, index) =>
-                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                    // );
-                    // const statisticsLineRecord = json.recordStats.map((result, index) =>
-                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                    // );
-                    // that.setState({
-                    //     currentStatistics: statisticsLineCurrent,
-                    //     averageStatistics: statisticsLineAverage,
-                    //     recordStatistics: statisticsLineRecord
-                    // })
-                })
-                .then(function(){
-                    console.log(that.state.calmStatsId)
-                })
-                .catch(function(ex) {
-                    console.log('parsing failed', ex)
-                })
-        }
+       ////////// this.props.dispatch(getUserInfo())
+        // console.log('get user info ');
+        // const that = this;
+        // console.log(localStorage.getItem('access_token'));
+        // if(localStorage.getItem('access_token')){
+        //
+        //     fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
+        //         .then(function (response) {
+        //             //console.log(response, 'get user info response');
+        //             return response.json();
+        //         })
+        //         .then(function(json) {
+        //             //console.log('parsed json', json);
+        //             const id = json.calmStatsId;
+        //            // console.log(id, 'id from getUserInfo');
+        //             that.setState({
+        //                 calmStatsId: id
+        //             });
+        //             const statisticsLineCurrent = that.state.stats.currentStats.map((result, index) =>
+        //                 <StatisticSheet key={index} title={that.title} value={that.value} {...result}/>
+        //             );
+        //             // const statisticsLineAverage = json.averageStats.map((result, index) =>
+        //             //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+        //             // );
+        //             // const statisticsLineRecord = json.recordStats.map((result, index) =>
+        //             //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+        //             // );
+        //             that.setState({
+        //                 currentStatistics: statisticsLineCurrent
+        //
+        //             })
+        //             console.log(statisticsLineCurrent)
+        //
+        //             //     averageStatistics: statisticsLineAverage,
+        //             //     recordStatistics: statisticsLineRecord
+        //         })
+        //         .then(function(){
+        //             console.log(that.state.calmStatsId)
+        //         })
+        //         .catch(function(ex) {
+        //             console.log('parsing failed', ex)
+        //         })
+        // }
 
     }
 
 
 //called from playbutton in youtube component
     startMeditationSession() {
+        this.props.dispatch(startSession())
         //console.log(this.state, 'start meditation session')
 
-        const calmId = this.state.calmStatsId;
-
-        const dateString = new Date();
-        const dateMilliseconds =  dateString.getTime();
-
-        fetch(this.serverUrl + '/sessions/start/' + dateMilliseconds+ '/' + calmId)
-            .then(function (response) {
-                //console.log(response, 'response from set session');
-                return response.json();
-            })
-            .then(function(json) {
-                console.log('parsed json', json)
-            })
-            .catch(function(ex) {
-                console.log('parsing failed', ex)
-            })
+        // const calmId = this.state.calmStatsId;
+        //
+        // const dateString = new Date();
+        // const dateMilliseconds =  dateString.getTime();
+        //
+        // fetch(this.serverUrl + '/sessions/start/' + dateMilliseconds+ '/' + calmId)
+        //     .then(function (response) {
+        //         //console.log(response, 'response from set session');
+        //         return response.json();
+        //     })
+        //     .then(function(json) {
+        //         console.log('parsed json', json)
+        //     })
+        //     .catch(function(ex) {
+        //         console.log('parsing failed', ex)
+        //     })
 
     }
 
 
     stopMeditationSession(){
-        const calmId = this.state.calmStatsId;
 
-        const dateString = new Date();
-        const dateMilliseconds =  dateString.getTime();
-
-        fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
-            .then(function (response) {
-                console.log(response);
-                return response.json();
-            })
-            .then(function(json) {
-                console.log('parsed json', json.stat)
-            })
-            .catch(function(ex) {
-                console.log('parsing failed', ex)
-            })
+        this.props.dispatch(stopSession())
+        // const calmId = this.state.calmStatsId;
+        //
+        // const dateString = new Date();
+        // const dateMilliseconds =  dateString.getTime();
+        //
+        // fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
+        //     .then(function (response) {
+        //         console.log(response);
+        //         return response.json();
+        //     })
+        //     .then(function(json) {
+        //         console.log('parsed json', json.stat)
+        //     })
+        //     .catch(function(ex) {
+        //         console.log('parsing failed', ex)
+        //     })
 
     }
 
     componentDidMount(){
-        this.getUserInfo();
-
+       //moved getUserInfo() into component did mount since it was redundant with redux
+        // this.getUserInfo();
+        this.props.dispatch(getUserInfo())
 
 
     }
@@ -283,9 +302,6 @@ export default class Dashboard extends Component{
             verticalAlign: "-webkit-baseline-middle"
         };
 
-        const fixedPosition = {
-           // position: 'fixed'
-        };
 
 
 
@@ -347,8 +363,11 @@ export default class Dashboard extends Component{
                                         <DailyChart/>
                                     </div>
                                 </div>
+                                <div className="col-md-2 side-space">
 
-                                <div className="col-md-4 pal">
+                                </div>
+
+                                <div className="col-md-8 pal">
                                     <div className="col-md-12 pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
@@ -357,27 +376,32 @@ export default class Dashboard extends Component{
                                         {this.state.currentStatistics}
                                     </div>
                                 </div>
-                                <div className="col-md-4 pal">
 
-                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
-                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                            <i className="fa fa-sun-o"></i>
-                                            &nbsp;Average
-                                        </div>
-                                        {this.state.averageStatistics}
-                                    </div>
+                                <div className="col-md-2 side-space">
+
                                 </div>
 
-                                <div className="col-md-4 pal">
+                                {/*<div className="col-md-4 pal">*/}
 
-                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
-                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                            <i className="fa fa-sun-o"></i>
-                                            &nbsp;Records
-                                        </div>
-                                        {this.state.recordStatistics}
-                                    </div>
-                                </div>
+                                    {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
+                                        {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
+                                            {/*<i className="fa fa-sun-o"></i>*/}
+                                            {/*&nbsp;Average*/}
+                                        {/*</div>*/}
+                                        {/*{this.state.averageStatistics}*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+
+                                {/*<div className="col-md-4 pal">*/}
+
+                                    {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
+                                        {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
+                                            {/*<i className="fa fa-sun-o"></i>*/}
+                                            {/*&nbsp;Records*/}
+                                        {/*</div>*/}
+                                        {/*{this.state.recordStatistics}*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
 
 
                             </div>
@@ -403,3 +427,9 @@ export default class Dashboard extends Component{
     }
 }
 
+function mapStateToProps(state) {
+    auth: state.auth;
+}
+
+
+export default connect(mapStateToProps)(Dashboard);

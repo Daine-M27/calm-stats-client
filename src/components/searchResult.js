@@ -1,8 +1,11 @@
 
 import React, { Component } from 'react';
 // import './css/searchResults.css'
+import {connect} from 'react-redux';
+import {selectVideo} from "../actions"
 
-export default class SearchResult extends Component {
+
+class SearchResult extends Component {
 
     constructor(props){
         super(props);
@@ -15,7 +18,7 @@ export default class SearchResult extends Component {
         return (
 
 
-            <div id={'resultid'} className="col-md-12 pas bbs" onClick={() => this.props.videoLoader(this.props.id.videoId, this.props.context)}>
+            <div id={'resultid'} className="col-md-12 pas bbs" onClick={() => this.props.dispatch(selectVideo(this.props.id.videoId))}>
                 <div className="row">
                     <div className="col-md-9">
                         <div className="col-md-12 pas font14"> {this.props.snippet.title}</div>
@@ -39,3 +42,9 @@ export default class SearchResult extends Component {
 
 
 }
+
+function maptStateToProps(state) {
+
+}
+
+export default connect(maptStateToProps)(SearchResult)
