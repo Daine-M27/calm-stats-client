@@ -14,13 +14,22 @@
 }
 
 .upper-section{
-    background-image: url("../../images/home-bg.jpg");
+    /* background-image: url("../../images/home-bg.jpg"); */
     text-align: center;
-    background-position: center;
-    background-repeat: no-repeat;
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
     background-attachment: scroll;
     min-height: 27em;
     margin-top:0;
+}
+
+.bg-full {
+    background-image: url("../../images/home-bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 .main-title{
@@ -30,4 +39,12 @@
 
 .text-vert-middle{
     verticalAlign: middle;
+}
+
+.mtsl {
+    /* margin-top: 300px; */
+}
+
+.min-height-500 {
+    min-height: 500px;
 }
