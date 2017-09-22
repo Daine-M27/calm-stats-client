@@ -18,69 +18,69 @@ export default class Dashboard extends Component{
             results: null,
             videoId: null,
             calmStatsId: "",
-            currentStatistics: null,
+            currentUserStats: null,
             averageStatistics: null,
             recordStatistics: null,
 
         };
 
-        this.state.stats = {
-            currentStats:[
-                {
-                    title: "Sessions for last 7 days:",
-                    value: 4
-                },
-                {
-                    title: "Sessions for last 30 days:",
-                    value: 23
-                },
-                {
-                    title: "Sessions for 365 days:",
-                    value: 227
-                },
-                {
-                    title: "Current daily streak:",
-                    value: 42
-                }
-            ],
-            averageStats:[
-                {
-                    title: "Per Week Average:",
-                    value: "2 Hrs 34 Mins"
-                },
-                {
-                    title: "Per Month Average:",
-                    value: "20 Hrs 24 Mins"
-                },
-                {
-                    title: "Per Session Average:",
-                    value: "28 Mins"
-                },
-                {
-                    title: "Daily streak average",
-                    value: "23 Days"
-                },
-
-            ],
-            recordStats:[
-                {
-                    title: "Total time in meditation:",
-                    value: "4 Days 22 Hrs 12 Mins"
-                },
-                {
-                    title: "Total Sessions:",
-                    value: "250"
-                },
-                {
-                    title: "Longest daily streak:",
-                    value: "72 Days"
-                },
-                {
-                    title: "Longest Session:",
-                    value: "43 Mins"
-                },
-            ]
-        }
+        // this.state.stats = {
+        //     currentStats:[
+        //         {
+        //             title: "Current Streak",
+        //             value: 4
+        //         },
+        //         {
+        //             title: "Total Number of Sessions",
+        //             value: 23
+        //         },
+        //         {
+        //             title: "Total Time ",
+        //             value: 227
+        //         },
+        //         {
+        //             title: "Average Time",
+        //             value: 42
+        //         }
+        //     ],
+        //     averageStats:[
+        //         {
+        //             title: "Per Week Average:",
+        //             value: "2 Hrs 34 Mins"
+        //         },
+        //         {
+        //             title: "Per Month Average:",
+        //             value: "20 Hrs 24 Mins"
+        //         },
+        //         {
+        //             title: "Per Session Average:",
+        //             value: "28 Mins"
+        //         },
+        //         {
+        //             title: "Daily streak average",
+        //             value: "23 Days"
+        //         },
+        //
+        //     ],
+        //     recordStats:[
+        //         {
+        //             title: "Total time in meditation:",
+        //             value: "4 Days 22 Hrs 12 Mins"
+        //         },
+        //         {
+        //             title: "Total Sessions:",
+        //             value: "250"
+        //         },
+        //         {
+        //             title: "Longest daily streak:",
+        //             value: "72 Days"
+        //         },
+        //         {
+        //             title: "Longest Session:",
+        //             value: "43 Mins"
+        //         },
+        //     ]
+        // }
     }
 
     login() {
@@ -137,7 +137,32 @@ export default class Dashboard extends Component{
         console.log(this.state)
     }
 
+    updateStats(){
+        const that = this;
+        fetch(this.serverUrl + '/sessions/update-stats/' + this.state.calmStatsId)
+            .then(function (response) {
+                console.log(response.json, 'update stats log');
+                return response.json();
+            })
+            .then(function (json) {
 
+                const statisticsLineCurrent = json.currentUserStats.map((result, index) =>
+                    <StatisticSheet key={index} title={result.title} dataValue={result.dataValue} {...result}/>
+                );
+                // const statisticsLineAverage = json.averageStats.map((result, index) =>
+                //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                // );
+                // const statisticsLineRecord = json.recordStats.map((result, index) =>
+                //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                // );
+                that.setState({
+                    currentUserStatistics: statisticsLineCurrent,
+                })
+            })
+            .catch(function(ex) {
+                console.log('parsing failed', ex)
+            })
+    }
 
     //gets all data from mongodb through get request to server
     getUserInfo(){
@@ -152,29 +177,30 @@ export default class Dashboard extends Component{
                     return response.json();
                 })
                 .then(function(json) {
-                    console.log('parsed json', json);
+                    //console.log('parsed json', json);
                     const id = json.calmStatsId;
-                    console.log(id, 'id from getUserInfo');
-                    that.setState({
-                        calmStatsId: id
-                    })
-                    // const statisticsLineCurrent = json.currentStats.map((result, index) =>
-                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                    // );
+                    //console.log(json.currentUserStats[3].dataValue);
+                    // that.setState({
+                    //     calmStatsId: id
+                    // });
+                    const statisticsLineCurrent = json.currentUserStats.map((result, index) =>
+                        <StatisticSheet key={index} title={result.title} dataValue={result.dataValue} {...result}/>
+                    );
                     // const statisticsLineAverage = json.averageStats.map((result, index) =>
                     //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
                     // );
                     // const statisticsLineRecord = json.recordStats.map((result, index) =>
                     //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
                     // );
-                    // that.setState({
-                    //     currentStatistics: statisticsLineCurrent,
+                    that.setState({
+                        currentUserStatistics: statisticsLineCurrent,
+                        calmStatsId: id
                     //     averageStatistics: statisticsLineAverage,
                     //     recordStatistics: statisticsLineRecord
-                    // })
+                    })
                 })
                 .then(function(){
-                    console.log(that.state.calmStatsId)
+                    console.log(that.state.currentUserStats, 'user stats log')
                 })
                 .catch(function(ex) {
                     console.log('parsing failed', ex)
@@ -210,17 +236,19 @@ export default class Dashboard extends Component{
 
     stopMeditationSession(){
         const calmId = this.state.calmStatsId;
-
+        const that = this;
         const dateString = new Date();
         const dateMilliseconds =  dateString.getTime();
 
         fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
             .then(function (response) {
-                console.log(response);
+                console.log(response, 'stop session response log after fetch');
                 return response.json();
             })
             .then(function(json) {
-                console.log('parsed json', json.stat)
+                // console.log('parsed json from stop session', json.currentUserStats);
+            that.getUserInfo()
+
             })
             .catch(function(ex) {
                 console.log('parsing failed', ex)
@@ -347,37 +375,45 @@ export default class Dashboard extends Component{
                                         <DailyChart/>
                                     </div>
                                 </div>
+                                <div className="col-md-2 side-space">
 
-                                <div className="col-md-4 pal">
+                                </div>
+
+                                <div className="col-md-8 pal">
                                     <div className="col-md-12 pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
-                                            &nbsp;Current
+                                            &nbsp;Current Statistics
                                         </div>
-                                        {this.state.currentStatistics}
-                                    </div>
-                                </div>
-                                <div className="col-md-4 pal">
-
-                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
-                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                            <i className="fa fa-sun-o"></i>
-                                            &nbsp;Average
-                                        </div>
-                                        {this.state.averageStatistics}
+                                        {this.state.currentUserStatistics}
                                     </div>
                                 </div>
 
-                                <div className="col-md-4 pal">
+                                <div className="col-md-2 side-space">
 
-                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
-                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                            <i className="fa fa-sun-o"></i>
-                                            &nbsp;Records
-                                        </div>
-                                        {this.state.recordStatistics}
-                                    </div>
                                 </div>
+
+                                {/*<div className="col-md-4 pal">*/}
+
+                                {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
+                                {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
+                                {/*<i className="fa fa-sun-o"></i>*/}
+                                {/*&nbsp;Average*/}
+                                {/*</div>*/}
+                                {/*{this.state.averageStatistics}*/}
+                                {/*</div>*/}
+                                {/*</div>*/}
+
+                                {/*<div className="col-md-4 pal">*/}
+
+                                {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
+                                {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
+                                {/*<i className="fa fa-sun-o"></i>*/}
+                                {/*&nbsp;Records*/}
+                                {/*</div>*/}
+                                {/*{this.state.recordStatistics}*/}
+                                {/*</div>*/}
+                                {/*</div>*/}
 
 
                             </div>

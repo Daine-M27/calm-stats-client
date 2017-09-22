@@ -1,0 +1,15 @@
+.image-one {
+    background-image: url("../../images/landing-upper.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+.image-two {
+    background-image: url("../../images/landing-lower.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}

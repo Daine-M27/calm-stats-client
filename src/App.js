@@ -20,7 +20,7 @@ export default function App(props) {
     return (
         <Router history={history} component={App}>
             <div>
-                <Nav />
+                <Nav auth={auth} {...props} />
                 <main>
                     <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
                     <Route exact path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
@@ -29,7 +29,7 @@ export default function App(props) {
                     {/*<Route exact path="/account/:id" component={Account} />*/}
                     {/*<Route exact path="/signup" component={SignUp} />*/}
                 </main>
-                {/* <Footer></Footer> */}
+                 {/*<Footer auth={auth} {...props}/>*/}
             </div>
         </Router>
     );

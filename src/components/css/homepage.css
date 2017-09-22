@@ -37,14 +37,45 @@
     margin-bottom:0;
 }
 
+.fixed-bg{
+    background: #1F1F1F url("../../images/home-bg.jpg") no-repeat center center;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    background-attachment: fixed;
+    position: relative;
+    padding-top:30px;
+    min-height: 300px;
+    width: 100%;
+    overflow: hidden;
+
+
+}
+
 .text-vert-middle{
     verticalAlign: middle;
 }
 
 .mtsl {
-    /* margin-top: 300px; */
+     margin-top: 3em !important;
 }
 
 .min-height-500 {
-    min-height: 500px;
+    min-height: 400px;
 }
+
+
+li a {
+    font-size: 20px !important;
+    color: yellow !important;
+    text-decoration: none;
+    -webkit-transition: .25s;
+    transition: .25s;
+}
+
+li {
+    padding-bottom:16px !important;
+}
+
+
+
+
