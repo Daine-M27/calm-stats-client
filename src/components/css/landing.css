@@ -13,3 +13,12 @@
     background-size: 100%;
 
 }
+
+.login{
+    color: #676767;
+}
+
+.login:hover{
+    color: #e9e3a7;
+    text-decoration: none;
+}

@@ -14,6 +14,7 @@ export default class Dashboard extends Component{
         this.props.auth.handleAuthentication();
         this.serverUrl = 'http://localhost:3001/api/v1';
         this.state = {
+            graphData:[],
             inputValue: "",
             results: null,
             videoId: null,
@@ -179,6 +180,7 @@ export default class Dashboard extends Component{
                 .then(function(json) {
                     //console.log('parsed json', json);
                     const id = json.calmStatsId;
+                    const graphData = json.graphData;
                     //console.log(json.currentUserStats[3].dataValue);
                     // that.setState({
                     //     calmStatsId: id
@@ -194,7 +196,8 @@ export default class Dashboard extends Component{
                     // );
                     that.setState({
                         currentUserStatistics: statisticsLineCurrent,
-                        calmStatsId: id
+                        calmStatsId: id,
+                        graphData: graphData
                     //     averageStatistics: statisticsLineAverage,
                     //     recordStatistics: statisticsLineRecord
                     })
@@ -372,7 +375,7 @@ export default class Dashboard extends Component{
                             <div className="col-md-12 bottom-half">
                                 <div className="col-md-12 pal">
                                     <div className="col-md-12 pan " style={chartBoxStyle}>
-                                        <DailyChart/>
+                                        <DailyChart data={this.state.graphData}/>
                                     </div>
                                 </div>
                                 <div className="col-md-2 side-space">

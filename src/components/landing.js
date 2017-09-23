@@ -56,6 +56,13 @@ export default class Landing extends Component{
                     <h6 className="main-text text-center spaced-out">
                         The password is 12345, just like in the movies!
                     </h6>
+                    <h5 className="text-center">
+                        <a className="login text-center" href="#" onClick={this.login}>
+                            <i className="fa fa-sign-in"></i>
+                            &nbsp;&nbsp;Login
+                        </a>
+                    </h5>
+
 
                 </div>
             </div>
