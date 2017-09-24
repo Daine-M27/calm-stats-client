@@ -4,7 +4,7 @@ import YouTube from 'react-youtube';
 import SearchResult from './searchResult';
 import StatisticSheet from './statisticSheet';
 import './css/dashboard.css';
-import DailyChart from './dailyChart';
+// import DailyChart from './dailyChart';
 import auth0 from 'auth0-js';
 
 export default class Dashboard extends Component{
@@ -138,32 +138,6 @@ export default class Dashboard extends Component{
         console.log(this.state)
     }
 
-    updateStats(){
-        const that = this;
-        fetch(this.serverUrl + '/sessions/update-stats/' + this.state.calmStatsId)
-            .then(function (response) {
-                console.log(response.json, 'update stats log');
-                return response.json();
-            })
-            .then(function (json) {
-
-                const statisticsLineCurrent = json.currentUserStats.map((result, index) =>
-                    <StatisticSheet key={index} title={result.title} dataValue={result.dataValue} {...result}/>
-                );
-                // const statisticsLineAverage = json.averageStats.map((result, index) =>
-                //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                // );
-                // const statisticsLineRecord = json.recordStats.map((result, index) =>
-                //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                // );
-                that.setState({
-                    currentUserStatistics: statisticsLineCurrent,
-                })
-            })
-            .catch(function(ex) {
-                console.log('parsing failed', ex)
-            })
-    }
 
     //gets all data from mongodb through get request to server
     getUserInfo(){
@@ -373,11 +347,11 @@ export default class Dashboard extends Component{
                             </div>
 
                             <div className="col-md-12 bottom-half">
-                                <div className="col-md-12 pal">
-                                    <div className="col-md-12 pan " style={chartBoxStyle}>
-                                        <DailyChart data={this.state.graphData}/>
-                                    </div>
-                                </div>
+                                {/*<div className="col-md-12 pal">*/}
+                                    {/*<div className="col-md-12 pan " style={chartBoxStyle}>*/}
+                                        {/*<DailyChart data={this.state.graphData}/>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
                                 <div className="col-md-2 side-space">
 
                                 </div>
