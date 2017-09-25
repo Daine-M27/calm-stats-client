@@ -347,6 +347,7 @@ export default class Dashboard extends Component{
                                 </div>
                             </div>
 
+
                             <div className="col-md-12 bottom-half">
                                 {/*<div className="col-md-12 pal">*/}
                                     {/*<div className="col-md-12 pan " style={chartBoxStyle}>*/}
