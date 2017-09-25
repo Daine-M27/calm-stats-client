@@ -153,51 +153,6 @@ class Dashboard extends Component{
 
     //gets all data from mongodb through get request to server
     getUserInfo(){
-<<<<<<< HEAD
-       ////////// this.props.dispatch(getUserInfo())
-        // console.log('get user info ');
-        // const that = this;
-        // console.log(localStorage.getItem('access_token'));
-        // if(localStorage.getItem('access_token')){
-        //
-        //     fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
-        //         .then(function (response) {
-        //             //console.log(response, 'get user info response');
-        //             return response.json();
-        //         })
-        //         .then(function(json) {
-        //             //console.log('parsed json', json);
-        //             const id = json.calmStatsId;
-        //            // console.log(id, 'id from getUserInfo');
-        //             that.setState({
-        //                 calmStatsId: id
-        //             });
-        //             const statisticsLineCurrent = that.state.stats.currentStats.map((result, index) =>
-        //                 <StatisticSheet key={index} title={that.title} value={that.value} {...result}/>
-        //             );
-        //             // const statisticsLineAverage = json.averageStats.map((result, index) =>
-        //             //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-        //             // );
-        //             // const statisticsLineRecord = json.recordStats.map((result, index) =>
-        //             //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-        //             // );
-        //             that.setState({
-        //                 currentStatistics: statisticsLineCurrent
-        //
-        //             })
-        //             console.log(statisticsLineCurrent)
-        //
-        //             //     averageStatistics: statisticsLineAverage,
-        //             //     recordStatistics: statisticsLineRecord
-        //         })
-        //         .then(function(){
-        //             console.log(that.state.calmStatsId)
-        //         })
-        //         .catch(function(ex) {
-        //             console.log('parsing failed', ex)
-        //         })
-        // }
-=======
         console.log('get user info ');
         const that = this;
         console.log(localStorage.getItem('access_token'));
@@ -240,57 +195,37 @@ class Dashboard extends Component{
                     console.log('parsing failed', ex)
                 })
         }
->>>>>>> sansredux
 
     }
 
 
 //called from playbutton in youtube component
     startMeditationSession() {
-        this.props.dispatch(startSession())
-        //console.log(this.state, 'start meditation session')
 
-        // const calmId = this.state.calmStatsId;
-        //
-        // const dateString = new Date();
-        // const dateMilliseconds =  dateString.getTime();
-        //
-        // fetch(this.serverUrl + '/sessions/start/' + dateMilliseconds+ '/' + calmId)
-        //     .then(function (response) {
-        //         //console.log(response, 'response from set session');
-        //         return response.json();
-        //     })
-        //     .then(function(json) {
-        //         console.log('parsed json', json)
-        //     })
-        //     .catch(function(ex) {
-        //         console.log('parsing failed', ex)
-        //     })
+        console.log(this.state, 'start meditation session')
+
+        const calmId = this.state.calmStatsId;
+
+        const dateString = new Date();
+        const dateMilliseconds =  dateString.getTime();
+
+        fetch(this.serverUrl + '/sessions/start/' + dateMilliseconds+ '/' + calmId)
+            .then(function (response) {
+                //console.log(response, 'response from set session');
+                return response.json();
+            })
+            .then(function(json) {
+                console.log('parsed json', json)
+            })
+            .catch(function(ex) {
+                console.log('parsing failed', ex)
+            })
 
     }
 
 
     stopMeditationSession(){
-<<<<<<< HEAD
 
-        this.props.dispatch(stopSession())
-        // const calmId = this.state.calmStatsId;
-        //
-        // const dateString = new Date();
-        // const dateMilliseconds =  dateString.getTime();
-        //
-        // fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
-        //     .then(function (response) {
-        //         console.log(response);
-        //         return response.json();
-        //     })
-        //     .then(function(json) {
-        //         console.log('parsed json', json.stat)
-        //     })
-        //     .catch(function(ex) {
-        //         console.log('parsing failed', ex)
-        //     })
-=======
         const calmId = this.state.calmStatsId;
         const that = this;
         const dateString = new Date();
@@ -309,14 +244,12 @@ class Dashboard extends Component{
             .catch(function(ex) {
                 console.log('parsing failed', ex)
             })
->>>>>>> sansredux
 
     }
 
     componentDidMount(){
-       //moved getUserInfo() into component did mount since it was redundant with redux
-        // this.getUserInfo();
-        this.props.dispatch(getUserInfo())
+        this.getUserInfo();
+        //this.props.dispatch(getUserInfo())
 
 
     }
@@ -426,52 +359,7 @@ class Dashboard extends Component{
                             </div>
 
                             <div className="col-md-12 bottom-half">
-<<<<<<< HEAD
-                                <div className="col-md-12 pal">
-                                    <div className="col-md-12 pan " style={chartBoxStyle}>
-                                        <DailyChart/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2 side-space">
 
-                                </div>
-
-                                <div className="col-md-8 pal">
-                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
-                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
-                                            <i className="fa fa-sun-o"></i>
-                                            &nbsp;Current
-                                        </div>
-                                        {this.state.currentStatistics}
-                                    </div>
-                                </div>
-
-                                <div className="col-md-2 side-space">
-
-                                </div>
-
-                                {/*<div className="col-md-4 pal">*/}
-
-                                    {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
-                                        {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
-                                            {/*<i className="fa fa-sun-o"></i>*/}
-                                            {/*&nbsp;Average*/}
-                                        {/*</div>*/}
-                                        {/*{this.state.averageStatistics}*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="col-md-4 pal">*/}
-
-                                    {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
-                                        {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
-                                            {/*<i className="fa fa-sun-o"></i>*/}
-                                            {/*&nbsp;Records*/}
-                                        {/*</div>*/}
-                                        {/*{this.state.recordStatistics}*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
-=======
                                 {/*<div className="col-md-12 pal">*/}
                                     {/*<div className="col-md-12 pan " style={chartBoxStyle}>*/}
                                         {/*<DailyChart data={this.state.graphData}/>*/}
@@ -494,7 +382,6 @@ class Dashboard extends Component{
                                 <div className="col-md-2 side-space">
 
                                 </div>
->>>>>>> sansredux
 
                                 {/*<div className="col-md-4 pal">*/}
 
