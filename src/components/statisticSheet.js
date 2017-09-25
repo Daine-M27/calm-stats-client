@@ -17,7 +17,7 @@ class StatisticSheet extends Component {
                     {this.props.title}
                 </div>
                 <div className="col-md-3 pas text-right spaced-out font12 text-dark-gray">
-                    {this.props.value}
+                    {this.props.dataValue}
                 </div>
             </div>
 

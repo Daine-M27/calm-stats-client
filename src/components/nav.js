@@ -35,7 +35,7 @@ class Nav extends React.Component {
         return (
             <div className="navigation-bar">
                 <nav className="navbar-header" style={navHeaderStyle}>
-                    <a className="nav-logo" href="/">                        
+                    <a className="nav-logo" href="/">
                         <span className="">
                             <img src="logo.png" style={logoStyle} />
                             &nbsp;
@@ -47,22 +47,24 @@ class Nav extends React.Component {
                     <ul className="nav navbar-nav navbar-right pan">
                         {
                             !isAuthenticated() && (
-                        <li>
-                            <a className="nav-button" href="#" onClick={this.login}>
-                                <i className="fa fa-sign-in"></i>
-                                &nbsp;&nbsp;Login
-                            </a>
-                        </li>
+
+                                <li>
+                                    <a className="nav-button" href="#" onClick={this.login}>
+                                        <i className="fa fa-sign-in"></i>
+                                        &nbsp;&nbsp;Login
+                                    </a>
+                                </li>
                             )
                         }
                         {
                             isAuthenticated() && (
-                        <li>
-                            <a className="nav-button" href="#" onClick={this.logout}>
-                                <i className="fa fa-sign-out"></i>
-                                &nbsp;&nbsp;Logout
-                            </a>
-                        </li>
+
+                                <li>
+                                    <a className="nav-button" href="#" onClick={this.logout}>
+                                        <i className="fa fa-sign-out"></i>
+                                        &nbsp;&nbsp;Logout
+                                    </a>
+                                </li>
                             )
                         }
                     </ul>

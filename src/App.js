@@ -18,14 +18,15 @@ export default function App(props) {
     return (
         <Router history={history} component={App}>
             <div>
-                <Nav auth={auth} {...props}/>
+
+                <Nav auth={auth} {...props} />
                 <main>
                     <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
                     <Route exact path="/dashboard" render={(props) => <Dashboard auth={auth} {...props} />} />
                     <Route exact path="/landing" component={Landing} />
                     <Route exact path="/callback" render={(props) => <Callback auth={auth} {...props} />} />
                 </main>
-                <Footer />
+                 {/*<Footer auth={auth} {...props}/>*/}
             </div>
         </Router>
     );

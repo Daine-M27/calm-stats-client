@@ -6,9 +6,9 @@ import YouTube from 'react-youtube';
 // import SearchResult from './searchResult';
 // import StatisticSheet from './statisticSheet';
 import './css/dashboard.css';
-import DailyChart from './dailyChart';
-// import auth0 from 'auth0-js';
-import {connect} from 'react-redux';
+
+// import DailyChart from './dailyChart';
+import auth0 from 'auth0-js';
 
 
 
@@ -19,11 +19,12 @@ class Dashboard extends Component{
         this.props.auth.handleAuthentication();
         this.serverUrl = 'http://localhost:3001/api/v1';
         this.state = {
+            graphData:[],
             inputValue: "",
             results: null,
             videoId: null,
             calmStatsId: "",
-            currentStatistics: null,
+            currentUserStats: null,
             averageStatistics: null,
             recordStatistics: null,
 
@@ -86,6 +87,7 @@ class Dashboard extends Component{
                 },
             ]
         }
+
     }
 
     login() {
@@ -149,9 +151,9 @@ class Dashboard extends Component{
     }
 
 
-
     //gets all data from mongodb through get request to server
     getUserInfo(){
+<<<<<<< HEAD
        ////////// this.props.dispatch(getUserInfo())
         // console.log('get user info ');
         // const that = this;
@@ -195,6 +197,50 @@ class Dashboard extends Component{
         //             console.log('parsing failed', ex)
         //         })
         // }
+=======
+        console.log('get user info ');
+        const that = this;
+        console.log(localStorage.getItem('access_token'));
+        if(localStorage.getItem('access_token')){
+
+            fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
+                .then(function (response) {
+                    //console.log(response, 'get user info response');
+                    return response.json();
+                })
+                .then(function(json) {
+                    //console.log('parsed json', json);
+                    const id = json.calmStatsId;
+                    const graphData = json.graphData;
+                    //console.log(json.currentUserStats[3].dataValue);
+                    // that.setState({
+                    //     calmStatsId: id
+                    // });
+                    const statisticsLineCurrent = json.currentUserStats.map((result, index) =>
+                        <StatisticSheet key={index} title={result.title} dataValue={result.dataValue} {...result}/>
+                    );
+                    // const statisticsLineAverage = json.averageStats.map((result, index) =>
+                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                    // );
+                    // const statisticsLineRecord = json.recordStats.map((result, index) =>
+                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
+                    // );
+                    that.setState({
+                        currentUserStatistics: statisticsLineCurrent,
+                        calmStatsId: id,
+                        graphData: graphData
+                    //     averageStatistics: statisticsLineAverage,
+                    //     recordStatistics: statisticsLineRecord
+                    })
+                })
+                .then(function(){
+                    console.log(that.state.currentUserStats, 'user stats log')
+                })
+                .catch(function(ex) {
+                    console.log('parsing failed', ex)
+                })
+        }
+>>>>>>> sansredux
 
     }
 
@@ -225,6 +271,7 @@ class Dashboard extends Component{
 
 
     stopMeditationSession(){
+<<<<<<< HEAD
 
         this.props.dispatch(stopSession())
         // const calmId = this.state.calmStatsId;
@@ -243,6 +290,26 @@ class Dashboard extends Component{
         //     .catch(function(ex) {
         //         console.log('parsing failed', ex)
         //     })
+=======
+        const calmId = this.state.calmStatsId;
+        const that = this;
+        const dateString = new Date();
+        const dateMilliseconds =  dateString.getTime();
+
+        fetch(this.serverUrl + '/sessions/stop/' + dateMilliseconds+ '/' + calmId)
+            .then(function (response) {
+                console.log(response, 'stop session response log after fetch');
+                return response.json();
+            })
+            .then(function(json) {
+                // console.log('parsed json from stop session', json.currentUserStats);
+            that.getUserInfo()
+
+            })
+            .catch(function(ex) {
+                console.log('parsing failed', ex)
+            })
+>>>>>>> sansredux
 
     }
 
@@ -306,8 +373,9 @@ class Dashboard extends Component{
 
 
 
-
+//console.log(this.props.auth);
         return (
+
             //wraps entire page
             <div className="col-md-12 bg-calm">
                 {
@@ -358,6 +426,7 @@ class Dashboard extends Component{
                             </div>
 
                             <div className="col-md-12 bottom-half">
+<<<<<<< HEAD
                                 <div className="col-md-12 pal">
                                     <div className="col-md-12 pan " style={chartBoxStyle}>
                                         <DailyChart/>
@@ -401,6 +470,52 @@ class Dashboard extends Component{
                                         {/*</div>*/}
                                         {/*{this.state.recordStatistics}*/}
                                     {/*</div>*/}
+                                {/*</div>*/}
+=======
+                                {/*<div className="col-md-12 pal">*/}
+                                    {/*<div className="col-md-12 pan " style={chartBoxStyle}>*/}
+                                        {/*<DailyChart data={this.state.graphData}/>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                                <div className="col-md-2 side-space">
+
+                                </div>
+
+                                <div className="col-md-8 pal">
+                                    <div className="col-md-12 pan bg-white" style={statBoxStyle}>
+                                        <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
+                                            <i className="fa fa-sun-o"></i>
+                                            &nbsp;Current Statistics
+                                        </div>
+                                        {this.state.currentUserStatistics}
+                                    </div>
+                                </div>
+
+                                <div className="col-md-2 side-space">
+
+                                </div>
+>>>>>>> sansredux
+
+                                {/*<div className="col-md-4 pal">*/}
+
+                                {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
+                                {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
+                                {/*<i className="fa fa-sun-o"></i>*/}
+                                {/*&nbsp;Average*/}
+                                {/*</div>*/}
+                                {/*{this.state.averageStatistics}*/}
+                                {/*</div>*/}
+                                {/*</div>*/}
+
+                                {/*<div className="col-md-4 pal">*/}
+
+                                {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
+                                {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
+                                {/*<i className="fa fa-sun-o"></i>*/}
+                                {/*&nbsp;Records*/}
+                                {/*</div>*/}
+                                {/*{this.state.recordStatistics}*/}
+                                {/*</div>*/}
                                 {/*</div>*/}
 
 
