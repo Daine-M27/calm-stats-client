@@ -295,8 +295,9 @@ export default class Dashboard extends Component{
 
 
 
-
+//console.log(this.props.auth);
         return (
+
             //wraps entire page
             <div className="col-md-12 bg-calm">
                 {
