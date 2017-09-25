@@ -43,8 +43,8 @@ class SearchResult extends Component {
 
 }
 
-function maptStateToProps(state) {
+// function maptStateToProps(state) {
+//
+// }
 
-}
-
-export default connect(maptStateToProps)(SearchResult)
+export default SearchResult;

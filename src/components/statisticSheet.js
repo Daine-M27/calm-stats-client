@@ -25,9 +25,9 @@ class StatisticSheet extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    
-}
+// function mapStateToProps(state) {
+//
+// }
 
 
-export default connect(mapStateToProps)(StatisticSheet);
+export default StatisticSheet;

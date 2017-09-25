@@ -1,13 +1,13 @@
-import {
-    getUserInfo, logIn, updateInputValue, searchYoutube, startSession, stopSession, toggleInfoModal
-} from '../actions';
+// import {
+//     getUserInfo, logIn, updateInputValue, searchYoutube, startSession, stopSession, toggleInfoModal
+// } from '../actions';
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
-// import SearchResult from './searchResult';
-// import StatisticSheet from './statisticSheet';
+import SearchResult from './searchResult';
+import StatisticSheet from './statisticSheet';
 import './css/dashboard.css';
 
-// import DailyChart from './dailyChart';
+import DailyChart from './dailyChart';
 import auth0 from 'auth0-js';
 
 
@@ -91,8 +91,8 @@ class Dashboard extends Component{
     }
 
     login() {
-        this.props.dispatch(logIn());
-        //this.props.auth.login();
+        //this.props.dispatch(logIn());
+        this.props.auth.login();
     }
 
 //sent over to searchResult component
@@ -108,46 +108,46 @@ class Dashboard extends Component{
 
     //move to action for youtube search
     sendSearch() {
-        const searchTerm = this.props.inputValue;            //       do i need this if the reducer has access to it     ???????
-        this.props.dispatch(searchYoutube(searchTerm))
-        // console.log(this.serverUrl, "sendSearch() server url");
-        // const that = this;
-        //
-        // fetch(this.serverUrl + '/search/' + this.state.inputValue)
-        //     .then(function(response){
-        //         return response.json();
-        //
-        //     })
-        //     .then(function(json) {
-        //         console.log('parsed json', json);
-        //         // resultRelay = {json};
-        //         // console.log(resultRelay, 'full');
-        //         const results = json.items.map((result, index) =>
-        //             <SearchResult key={index} videoLoader={that.loadVideo} context={that} {...result} />
-        //         );
-        //         //
-        //         that.setState({
-        //             results: results
-        //         });
-        //
-        //         //console.log(results);
-        //
-        //     })
-        //     .catch(function(ex) {
-        //         console.log('parsing failed send search function', ex)
-        //     });
-        // console.log('sent search to server');
+        // const searchTerm = this.props.inputValue;            //       do i need this if the reducer has access to it     ???????
+        // this.props.dispatch(searchYoutube(searchTerm));
+        console.log(this.serverUrl, "sendSearch() server url");
+        const that = this;
+
+        fetch(this.serverUrl + '/search/' + this.state.inputValue)
+            .then(function(response){
+                return response.json();
+
+            })
+            .then(function(json) {
+                console.log('parsed json', json);
+                // resultRelay = {json};
+                // console.log(resultRelay, 'full');
+                const results = json.items.map((result, index) =>
+                    <SearchResult key={index} videoLoader={that.loadVideo} context={that} {...result} />
+                );
+                //
+                that.setState({
+                    results: results
+                });
+
+                //console.log(results);
+
+            })
+            .catch(function(ex) {
+                console.log('parsing failed send search function', ex)
+            });
+        console.log('sent search to server');
     }
 
 
 
     updateInputValue(evt) {
-        const inputValue = evt.target.value;
-        this.props.dispatch(updateInputValue(inputValue))
-        // this.setState({
-        //     inputValue: evt.target.value
-        // });
-        // console.log(evt.target.value);
+        // const inputValue = evt.target.value;
+        // this.props.dispatch(updateInputValue(inputValue))
+        this.setState({
+            inputValue: evt.target.value
+        });
+        console.log(evt.target.value);
     }
 
 
@@ -429,9 +429,9 @@ class Dashboard extends Component{
     }
 }
 
-function mapStateToProps(state) {
-    auth: state.auth;
-}
+// function mapStateToProps(state) {
+//     auth: state.auth;
+// }
 
 
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

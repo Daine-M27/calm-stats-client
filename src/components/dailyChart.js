@@ -45,8 +45,6 @@ class DailyChart extends Component{
     }
 }
 
-function mapStateToProps() {
 
-}
 
-export default connect(mapStateToProps)(DailyChart)
+export default DailyChart;
