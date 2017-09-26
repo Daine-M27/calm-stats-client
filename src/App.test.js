@@ -55,9 +55,9 @@ describe('<App/>', () => {
         shallow(<App />);
     });
 
-    it('Renders the dashboard', () => {
-        shallow(<Dashboard auth={auth}/>);
-    });
+    // it('Renders the dashboard', () => {
+    //     shallow(<Dashboard auth={auth}/>);
+    // });
 
     it('Renders the search result', () => {
         const loadVideo = jest.fn;
