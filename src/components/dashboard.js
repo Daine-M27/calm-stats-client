@@ -4,7 +4,7 @@ import YouTube from 'react-youtube';
 import SearchResult from './searchResult';
 import StatisticSheet from './statisticSheet';
 import './css/dashboard.css';
-// import DailyChart from './dailyChart';
+import DailyChart from './dailyChart';
 import auth0 from 'auth0-js';
 
 export default class Dashboard extends Component{
@@ -349,11 +349,11 @@ export default class Dashboard extends Component{
 
 
                             <div className="col-md-12 bottom-half">
-                                {/*<div className="col-md-12 pal">*/}
-                                    {/*<div className="col-md-12 pan " style={chartBoxStyle}>*/}
-                                        {/*<DailyChart data={this.state.graphData}/>*/}
-                                    {/*</div>*/}
-                                {/*</div>*/}
+                                <div className="col-md-12 pal">
+                                    <div className="col-md-12 pan " style={chartBoxStyle}>
+                                        <DailyChart data={this.state.graphData}/>
+                                    </div>
+                                </div>
                                 <div className="col-md-2 side-space">
 
                                 </div>
