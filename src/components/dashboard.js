@@ -12,7 +12,7 @@ export default class Dashboard extends Component{
         super(props);
 
         this.props.auth.handleAuthentication();
-        this.serverUrl = 'http://localhost:3001/api/v1';
+        this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1';
         this.state = {
             graphData:[],
             inputValue: "",
