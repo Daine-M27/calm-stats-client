@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import {Line} from 'react-chartjs-2';
 
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, CartesianAxis, Tooltip, Legend} from 'recharts';
-import ResponsiveContainer from "recharts/es6/component/ResponsiveContainer";
 const demoData = [
     {date: 'Sep 1', time: 23},
     {date: 'Sep 2', time: 18},
@@ -19,6 +18,31 @@ const demoData = [
     {date: 'Sep 14', time: 25}
 ];
 
+const data = {
+    lables:['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets:[{
+        label: 'My First dataset',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        borderColor: 'rgba(75,192,192,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(75,192,192,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: [65, 59, 80, 81, 56, 55, 40]
+    }]
+};
+
 
 export default class DailyChart extends Component{
     constructor(props){
@@ -26,23 +50,15 @@ export default class DailyChart extends Component{
 
     }
     render () {
-        console.log(this.props.data);
+        //console.log(this.props.data);
         return (
-           <ResponsiveContainer height='100%' width='100%'>
+            <div>
+                <Line
+                    data={data}
 
-               <LineChart data={this.props.data}
-                          margin={{top: 20, right: 50, left: 0, bottom: 10}}>
-                   <XAxis dataKey="date"/>
-                   <YAxis/>
-                   <CartesianGrid stroke="yellow" strokeDasharray="3 3" />
-                   <CartesianAxis stroke="yellow" />
-                   <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
-                   <Line type="monotone" dataKey="time" stroke="yellow" fill="#e9e3a7"/>
-               </LineChart>
+                />
+            </div>
 
-
-
-            </ResponsiveContainer>
         );
     }
 }
