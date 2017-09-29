@@ -13,8 +13,32 @@ export default class Dashboard extends Component{
 
         this.props.auth.handleAuthentication();
         this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1';
+        // this.serverUrl = 'http://localhost:3000/api/v1';
         this.state = {
-            graphData:[],
+            graphData:{
+                labels: [],
+                datasets: [{
+                    label: 'Time Per Day',
+                    fill: true,
+                    lineTension: 0.1,
+                    backgroundColor: 'rgba(255,255,0,0.4)',
+                    borderColor: 'rgba(255,255,0,1)',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: 'rgba(255,255,0,1)',
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: []
+                }]
+            },
             inputValue: "",
             results: null,
             videoId: null,
@@ -152,9 +176,11 @@ export default class Dashboard extends Component{
                     return response.json();
                 })
                 .then(function(json) {
-                    //console.log('parsed json', json);
+                    console.log('parsed json', json);
+                    console.log('date and time from json', json.graphData[0].date, json.graphData[0].time);
                     const id = json.calmStatsId;
-                    const graphData = json.graphData;
+                    const labelArray = [];
+                    const graphData = [];
                     //console.log(json.currentUserStats[3].dataValue);
                     // that.setState({
                     //     calmStatsId: id
@@ -162,19 +188,42 @@ export default class Dashboard extends Component{
                     const statisticsLineCurrent = json.currentUserStats.map((result, index) =>
                         <StatisticSheet key={index} title={result.title} dataValue={result.dataValue} {...result}/>
                     );
-                    // const statisticsLineAverage = json.averageStats.map((result, index) =>
-                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                    // );
-                    // const statisticsLineRecord = json.recordStats.map((result, index) =>
-                    //     <StatisticSheet key={index} title={this.title} value={this.value} {...result}/>
-                    // );
+                    console.log(json.graphData.length);
+                    for( let i = 0; i < json.graphData.length; i++){
+                        labelArray.push(json.graphData[i].date);
+                        graphData.push(json.graphData[i].time)
+
+                    }
+                    console.log(labelArray, 'label Array');
                     that.setState({
                         currentUserStatistics: statisticsLineCurrent,
                         calmStatsId: id,
-                        graphData: graphData
-                    //     averageStatistics: statisticsLineAverage,
-                    //     recordStatistics: statisticsLineRecord
-                    })
+                        graphData:{labels: labelArray, datasets:[{
+                            label: 'Time Per Day',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: 'rgba(255,255,0,0.4)',
+                            borderColor: 'rgba(255,255,0,1)',
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: 'rgba(255,255,0,1)',
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                            pointHoverBorderColor: 'rgba(220,220,220,1)',
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data:graphData
+
+                        }]},
+
+
+                    });
+                    console.log(that.state, 'state log after set state in get stats')
                 })
                 .then(function(){
                     console.log(that.state.currentUserStats, 'user stats log')
@@ -351,7 +400,7 @@ export default class Dashboard extends Component{
                             <div className="col-md-12 bottom-half">
                                 <div className="col-md-12 pal">
                                     <div className="col-md-12 pan " style={chartBoxStyle}>
-                                        <DailyChart data={this.state.graphData}/>
+                                        <DailyChart graphData={this.state.graphData}/>
                                     </div>
                                 </div>
                                 <div className="col-md-2 side-space">
