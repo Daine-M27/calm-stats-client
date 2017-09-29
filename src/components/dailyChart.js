@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, CartesianAxis, Tooltip, Legend} from 'recharts';
-// import ResponsiveContainer from "recharts/es6/component/ResponsiveContainer";
+import ResponsiveContainer from "recharts/es6/component/ResponsiveContainer";
 const demoData = [
     {date: 'Sep 1', time: 23},
     {date: 'Sep 2', time: 18},
