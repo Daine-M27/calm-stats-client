@@ -28,9 +28,9 @@ export default class DailyChart extends Component{
     render () {
         console.log(this.props.data);
         return (
-           // <ResponsiveContainer height='100%' width='100%'>
+           <ResponsiveContainer height='100%' width='100%'>
 
-               <LineChart height={200} width={800} data={this.props.data}
+               <LineChart data={this.props.data}
                           margin={{top: 20, right: 50, left: 0, bottom: 10}}>
                    <XAxis dataKey="date"/>
                    <YAxis/>
@@ -42,7 +42,7 @@ export default class DailyChart extends Component{
 
 
 
-            // </ResponsiveContainer>
+            </ResponsiveContainer>
         );
     }
 }
