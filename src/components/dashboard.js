@@ -18,7 +18,7 @@ export default class Dashboard extends Component{
             graphData:{
                 labels: [],
                 datasets: [{
-                    label: 'Time Per Day',
+                    label: 'Minuets Per Day',
                     fill: true,
                     lineTension: 0.1,
                     backgroundColor: 'rgba(255,255,0,0.4)',
@@ -199,7 +199,7 @@ export default class Dashboard extends Component{
                         currentUserStatistics: statisticsLineCurrent,
                         calmStatsId: id,
                         graphData:{labels: labelArray, datasets:[{
-                            label: 'Time Per Day',
+                            label: 'Minuets Per Day',
                             fill: true,
                             lineTension: 0.1,
                             backgroundColor: 'rgba(255,255,0,0.4)',
