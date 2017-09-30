@@ -18,8 +18,8 @@ export default class Auth {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    this.serverUrl = 'http://localhost:3001/api/v1/users/';
-   // this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1/users/';
+    //this.serverUrl = 'http://localhost:3001/api/v1/users/';
+    this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1/users/';
   }
 
 
