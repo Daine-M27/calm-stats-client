@@ -239,9 +239,7 @@ export default class Dashboard extends Component{
 //called from playbutton in youtube component
     startMeditationSession() {
         //console.log(this.state, 'start meditation session')
-
         const calmId = this.state.calmStatsId;
-
         const dateString = new Date();
         const dateMilliseconds =  dateString.getTime();
 

@@ -16,8 +16,8 @@
       <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="1191">
+              <caret line="241" column="8" lean-forward="false" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -325,12 +325,12 @@
       <workItem from="1506369822234" duration="5632000" />
       <workItem from="1506471881709" duration="2820000" />
       <workItem from="1506709210206" duration="12839000" />
-      <workItem from="1506986519384" duration="2867000" />
+      <workItem from="1506986519384" duration="3104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187114000" />
+    <option name="totallyTimeSpent" value="187351000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -741,8 +741,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+        <state relative-caret-position="1191">
+          <caret line="241" column="8" lean-forward="false" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
