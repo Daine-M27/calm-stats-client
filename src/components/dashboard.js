@@ -172,7 +172,7 @@ export default class Dashboard extends Component{
 
             fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
                 .then(function (response) {
-                    //console.log(response, 'get user info response');
+                    console.log(response, 'get user info response');
                     return response.json();
                 })
                 .then(function(json) {
