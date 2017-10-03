@@ -167,7 +167,7 @@ export default class Dashboard extends Component{
     getUserInfo(){
         console.log('get user info ');
         const that = this;
-        console.log(localStorage.getItem('access_token'));
+        //console.log(localStorage.getItem('access_token'));
         if(localStorage.getItem('access_token')){
 
             fetch(this.serverUrl + '/sessions/getstats/' + localStorage.getItem('access_token'))
@@ -231,6 +231,9 @@ export default class Dashboard extends Component{
                 .catch(function(ex) {
                     console.log('parsing failed', ex)
                 })
+        }
+        else {
+            console.log('no access token found')
         }
 
     }
