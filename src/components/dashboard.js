@@ -12,7 +12,8 @@ export default class Dashboard extends Component{
         super(props);
 
         this.props.auth.handleAuthentication();
-        this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1';
+        this.serverUrl = 'https://www.calmstats.com/api/v1';
+        //this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1';
         // this.serverUrl = 'http://localhost:3000/api/v1';
         this.state = {
             graphData:{
