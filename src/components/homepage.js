@@ -7,7 +7,7 @@ export default function Home(props) {
         <div className="home-page ">            
             <section className="col-md-12 upper-section man pan">
                 <div className="col-md-12 man pan ">
-                    <h1 className="element-animation title-call font-allura mtl ptl text-white mtsl ">Meditation can improve your life!</h1>
+                    <h1 className="element-animation-text title-call font-allura mtl ptl text-white mtsl ">Meditation can improve your life!</h1>
                 </div>
                 <div className="col-md-12 col-sm-12">
                     <div className="col-md-5 text-right">
@@ -37,26 +37,33 @@ export default function Home(props) {
 
             <section className="col-md-12">
                 <div className="info-columns">
-                    <div className="col-md-12 text-center text-dark-blue">
+                    <div className=" font-raleway col-md-12 text-center text-dark-blue">
                         <h3>Studies Supporting the Benefits of Meditation</h3>
                     </div>
-                    <div className="col-lg-4 text-center  col-md-4 col-sm -12 left-info text-dark-blue">
-                        <h4>Intellectual</h4>
-                        <li> <a href="http://www.psyn-journal.com/article/S0925-4927%2810%2900288-X/abstract"><i>Increases Gray Matter</i></a> </li>
-                        <li> <a href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817"><i>Improves Focus and Attention</i></a> </li>
-                        <li> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2944261/"><i>Improves Learning and Memory</i></a> </li>
+                    <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
+                        <div className="bor-section pbl">
+                            <h4 className="font-raleway text-dark-blue pbs bbs"><span className="fa fa-university"> </span> Intellectual</h4>
+                            <li> <a href="http://www.psyn-journal.com/article/S0925-4927%2810%2900288-X/abstract">Increases Gray Matter</a> </li>
+                            <li> <a href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817">Improves Focus and Attention</a> </li>
+                            <li> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2944261/">Improves Learning and Memory</a> </li>
+                        </div>
                     </div>
-                    <div className="col-lg-4 text-center  col-md-4 col-sm -12 left-info text-dark-blue">
-                        <h4>Physiological</h4>
-                        <li className="yellow-text"> <a href="http://www.huffingtonpost.com/2013/04/30/meditation-health-benefits_n_3178731.html?utm_hp_ref=mostpopular"><i>Relieves pain</i></a> </li>
-                        <li className="yellow-text"> <a href="http://circoutcomes.ahajournals.org/content/5/6/750"><i>Reduces risk of Heart Disease</i></a> </li>
-                        <li className="yellow-text"> <a href="http://online.liebertpub.com/doi/abs/10.1089/acm.2008.0416"><i>Lowers Blood Pressure</i></a> </li>
+                    <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
+                        <div className="bor-section pbl">
+                            <h4 className="font-raleway text-dark-blue pbs bbs"><span className="fa fa-heartbeat"> </span> Physiological</h4>
+                            <li> <a href="http://www.huffingtonpost.com/2013/04/30/meditation-health-benefits_n_3178731.html?utm_hp_ref=mostpopular">Relieves pain</a> </li>
+                            <li> <a href="http://circoutcomes.ahajournals.org/content/5/6/750">Reduces risk of Heart Disease</a> </li>
+                            <li> <a href="http://online.liebertpub.com/doi/abs/10.1089/acm.2008.0416">Lowers Blood Pressure</a> </li>
+                        </div>
                     </div>
-                    <div className="col-lg-4 text-center  col-md-4 col-sm -12 left-info text-dark-blue">
-                        <h4>Psychological</h4>
-                        <li className="yellow-text"> <a href="https://www.sciencedaily.com/releases/2013/03/130315095916.htm"><i>Decreases Depression</i></a> </li>
-                        <li className="yellow-text"> <a href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817"><i>Decreases Anxiety Disorders</i></a> </li>
-                        <li className="yellow-text"> <a href="https://link.springer.com/article/10.1007%2Fs10943-013-9679-0"><i>Improves Mood and Well-Being</i></a> </li>
+                    <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
+                        <div className="bor-section pbl">
+                            <h4 className="font-raleway text-dark-blue pbs bbs"><span className="fa fa-smile-o"> </span> Psychological</h4>
+                            <li> <a href="https://www.sciencedaily.com/releases/2013/03/130315095916.htm">Decreases Depression</a> </li>
+                            <li> <a href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817">Decreases Anxiety Disorders</a> </li>
+                            <li> <a href="https://link.springer.com/article/10.1007%2Fs10943-013-9679-0">Improves Mood and Well-Being</a> </li>
+                        </div>
+
                     </div>
                 </div>
             </section>
