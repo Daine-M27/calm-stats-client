@@ -32,11 +32,11 @@ export default class Nav extends React.Component {
             <div className="navigation-bar">
                 <nav className="navbar-header" style={navHeaderStyle}>
                     <a className="nav-logo" href="/">
-                        <span className="">
-                            <img src="logo.png" style={logoStyle} />
-                            &nbsp;
-                        </span>
-                        <span className="spaced-out pts">
+                        {/*<span className="">*/}
+                            {/*<img src="logo.png" style={logoStyle} />*/}
+                            {/*&nbsp;*/}
+                        {/*</span>*/}
+                        <span className="pts font-allura">
                             Calm Stats
                         </span>
                     </a>
@@ -53,7 +53,12 @@ export default class Nav extends React.Component {
                         }
                         {
                             isAuthenticated() && (
+
                                 <li>
+                                    <a className="nav-button" href="/dashboard">
+                                        <i className="fa fa-tachometer"/>
+                                        &nbsp;&nbsp;Dashboard
+                                    </a>
                                     <a className="nav-button" href="#" onClick={this.logout}>
                                         <i className="fa fa-sign-out"></i>
                                         &nbsp;&nbsp;Logout

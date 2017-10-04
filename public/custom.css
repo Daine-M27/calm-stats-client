@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Allura');
 @import "variables";
 @import "xterm";
 @import "picker";
@@ -22,6 +23,9 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 
+.font-allura {
+    font-family: 'Allura', cursive;
+}
 
 .font-ubuntu {
     font-family: 'Ubuntu Mono', monospace;
@@ -525,6 +529,14 @@ body {
     color: #fff;
 }
 
+.text-light-blue {
+    color: #00BAF2;
+}
+
+.text-dark-blue {
+    color: #0079a7;
+}
+
 .capitalizeit {
     text-transform: capitalize
 }
@@ -1023,13 +1035,13 @@ div li>span {
 }
 
 .bg-calm {
-    background: rgba(0,127,178,1);
-    background: -moz-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,127,178,1)), color-stop(9%, rgba(0,127,178,1)), color-stop(24%, rgba(0,127,178,1)), color-stop(94%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1)));
-    background: -webkit-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
-    background: -o-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
-    background: -ms-linear-gradient(top, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
-    background: linear-gradient(to bottom, rgba(0,127,178,1) 0%, rgba(0,127,178,1) 9%, rgba(0,127,178,1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: rgb(0, 186, 242);
+    background: -moz-linear-gradient(top, rgba(0, 186, 242, 1) 0%, rgba(0, 186, 242, 1) 9%, rgba(0, 186, 242, 1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 186, 242, 1)), color-stop(9%, rgba(0, 186, 242, 1)), color-stop(24%, rgba(0, 186, 242, 1)), color-stop(94%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(top, rgba(0, 186, 242, 1) 0%, rgba(0, 186, 242, 1) 9%, rgba(0, 186, 242, 1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: -o-linear-gradient(top, rgba(0, 186, 242, 1) 0%, rgba(0, 186, 242, 1) 9%, rgba(0, 186, 242, 1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 186, 242, 1) 0%, rgba(0, 186, 242, 1) 9%, rgba(0, 186, 242, 1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 186, 242, 1) 0%, rgba(0, 186, 242, 1) 9%, rgba(0, 186, 242, 1) 24%, rgba(255,255,255,1) 94%, rgba(255,255,255,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007fb2', endColorstr='#ffffff', GradientType=0 );
 }
 

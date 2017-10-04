@@ -16,19 +16,20 @@
 
 .navbar-header{
     width: 100%;
-    background-color: rgba(0, 127, 178, 1);
+    background-color: rgb(255, 255, 255);
 }
 
 .nav-logo{
-    color: #ffffff;
+    color: #00baf2;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 45px;
     padding-left: 20px;
 
 }
 
 .nav-logo:hover{
-    color: #e9e3a7;
+
+    color: #0079a7;
     text-decoration: none;
 }
 
@@ -39,16 +40,14 @@
 }
 
 .nav-button{
-    color: #ffffff !important;
+    color: #00baf2 !important;
     text-decoration: none;
-    font-size: 1.3em;
-
+    display: inline-block !important;
 
 }
 
 .nav-button:hover{
-    color: #e9e3a7;
+    color: #0079a7 !important;
     text-decoration: none;
 }
-
 
