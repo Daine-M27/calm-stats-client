@@ -372,7 +372,7 @@ export default class Dashboard extends Component{
                                             </div>
                                         </div>
 
-                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue" >
+                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue">
 
                                             <div className="col-md-8 brs">Video Title</div>
                                             <div className="col-md-4 text-center">
@@ -386,7 +386,7 @@ export default class Dashboard extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-7 pal ">
+                                <div className="col-md-7 col-sm-12 pal ">
                                     <div className="col-md-12 bor pan" style={playerBoxStyle}>
                                         <YouTube videoId={this.state.videoId}
                                                  opts={opts}

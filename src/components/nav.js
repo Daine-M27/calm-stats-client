@@ -56,7 +56,7 @@ export default class Nav extends React.Component {
 
                                 <li>
                                     <a className="nav-button" href="/dashboard">
-                                        <i className="fa fa-tachometer"/>
+                                        <i className="fa fa-area-chart"/>
                                         &nbsp;&nbsp;Dashboard
                                     </a>
                                     <a className="nav-button" href="#" onClick={this.logout}>
