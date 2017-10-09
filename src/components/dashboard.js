@@ -13,7 +13,7 @@ export default class Dashboard extends Component{
 
         this.props.auth.handleAuthentication();
         this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1';
-        // this.serverUrl = 'http://localhost:3000/api/v1';
+        // this.serverUrl = 'http://localhost:3001/api/v1';
         this.state = {
             graphData:{
                 labels: [],

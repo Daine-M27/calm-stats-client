@@ -44,31 +44,31 @@ export default function Home(props) {
                     <div className="pas pbl col-lg-4 text-center col-md-4 col-sm-12">
                         <div className="bor-section pbl">
                             <h4 className="font-raleway text-light-blue pbm bbs"><span className="fa fa-university"> </span> Intellectual</h4>
-                            <li> <a target="_blank" href="http://www.psyn-journal.com/article/S0925-4927%2810%2900288-X/abstract">Increases Gray Matter</a> </li>
-                            <li> <a target="_blank" href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817">Improves Focus and Attention</a> </li>
-                            <li> <a target="_blank" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2944261/">Improves Learning and Memory</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="http://www.psyn-journal.com/article/S0925-4927%2810%2900288-X/abstract">Increases Gray Matter</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817">Improves Focus and Attention</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2944261/">Improves Learning and Memory</a> </li>
                         </div>
                     </div>
                     <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
                         <div className="bor-section pbl">
                             <h4 className="font-raleway text-light-blue pbm bbs"><span className="fa fa-heartbeat"> </span> Physiological</h4>
-                            <li> <a target="_blank" href="http://www.huffingtonpost.com/2013/04/30/meditation-health-benefits_n_3178731.html?utm_hp_ref=mostpopular">Relieves pain</a> </li>
-                            <li> <a target="_blank" href="http://circoutcomes.ahajournals.org/content/5/6/750">Reduces risk of Heart Disease</a> </li>
-                            <li> <a target="_blank" href="http://online.liebertpub.com/doi/abs/10.1089/acm.2008.0416">Lowers Blood Pressure</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="http://www.huffingtonpost.com/2013/04/30/meditation-health-benefits_n_3178731.html?utm_hp_ref=mostpopular">Relieves pain</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="http://circoutcomes.ahajournals.org/content/5/6/750">Reduces risk of Heart Disease</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="http://online.liebertpub.com/doi/abs/10.1089/acm.2008.0416">Lowers Blood Pressure</a> </li>
                         </div>
                     </div>
                     <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
                         <div className="bor-section pbl">
                             <h4 className="font-raleway text-light-blue pbm bbs"><span className="fa fa-smile-o"> </span> Psychological</h4>
-                            <li> <a target="_blank" href="https://www.sciencedaily.com/releases/2013/03/130315095916.htm">Decreases Depression</a> </li>
-                            <li> <a target="_blank" href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817">Decreases Anxiety Disorders</a> </li>
-                            <li> <a target="_blank" href="https://link.springer.com/article/10.1007%2Fs10943-013-9679-0">Improves Mood and Well-Being</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="https://www.sciencedaily.com/releases/2013/03/130315095916.htm">Decreases Depression</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="http://online.liebertpub.com/doi/abs/10.1089/acm.2006.12.817">Decreases Anxiety Disorders</a> </li>
+                            <li> <a rel="noopener noreferrer" target="_blank" href="https://link.springer.com/article/10.1007%2Fs10943-013-9679-0">Improves Mood and Well-Being</a> </li>
                         </div>
-
                     </div>
                 </div>
                 <div className="info-columns col-md-2"></div>
             </section>
+
 
             <section className="">
                 <div className="col-md-12 mtl bg-dark4">
@@ -98,8 +98,8 @@ export default function Home(props) {
                 </div>
 
                 <div className="col-md-12 bg-dark4 pbl">
-                    <div className="col-md-1"></div>
-                    <div className="font-raleway text-dark-gray bg-white col-md-5 mrh text-holder pbl">
+                    <div className="col-md-2"></div>
+                    <div className="font-raleway text-dark-gray bg-white col-md-8 col-xs-12 text-holder pbl">
                         <div className="pal ">
                             <h6 className="text-calm-blue ptl">Whats this all about?</h6>
                             <p className="small font-raleway">
@@ -114,11 +114,15 @@ export default function Home(props) {
                             </p>
                         </div>
                     </div>
-                    <div className="font-raleway text-dark-gray col-md-5">
-                        <img src={require("../images/homepage.png")} alt="Interface" width={"618"} height={"auto"}/>
+                    <div className="col-md-2"></div>
+                    <br/>
+                </div>
+                <div className="col-md-12 bg-dark4 pbl">
+                    <div className="col-md-2"></div>
+                    <div className="font-raleway text-dark-gray bg-white pbm col-md-8 col-xs-12">
+                        <img src={require("../images/homepage.png")} alt="Interface" width={"100%"} height={"auto"}/>
                     </div>
-
-                    <div className="col-md-1"></div>
+                    <div className="col-md-2"></div>
                 </div>
             </section>
         </div>
