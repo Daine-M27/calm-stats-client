@@ -34,7 +34,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       //console.log(authResult, 'authResult');
       if (authResult && authResult.accessToken && authResult.idToken) {
-          console.log('this is calling setSession()');
+          console.log(authResult, 'authResult', 'this is calling setSession()');
         this.setSession(authResult);
         //console.log('redirect coming')
 
