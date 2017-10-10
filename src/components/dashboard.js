@@ -177,7 +177,7 @@ export default class Dashboard extends Component{
                 })
                 .then(function(json) {
                     console.log('parsed json', json);
-                    console.log('date and time from json', json.graphData[0].date, json.graphData[0].time);
+                    //console.log('date and time from json', json.graphData[0].date, json.graphData[0].time);
                     const id = json.calmStatsId;
                     const labelArray = [];
                     const graphData = [];
