@@ -120,7 +120,7 @@ export default function Home(props) {
                 <div className="col-md-12 bg-dark4 pbl">
                     <div className="col-md-2"></div>
                     <div className="font-raleway text-dark-gray bg-white pbm col-md-8 col-xs-12">
-                        <img src={require("../images/homepage.png")} alt="Interface" width={"100%"} height={"auto"}/>
+                        <img src={require("../../public/homepage.png")} alt="Interface" width={"100%"} height={"auto"}/>
                     </div>
                     <div className="col-md-2"></div>
                 </div>
