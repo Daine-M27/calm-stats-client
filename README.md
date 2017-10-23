@@ -29,6 +29,7 @@
   <li>Continuous integration and deployment with <a href="https://travis-ci.org">TravisCI</a></li>
   <li>Hosted at <a href="https://netlify.com">Netlify</a></li>
   <li>Testing with <a href="https://github.com/airbnb/enzyme">Enzyme</a></li>
+  <li>SSL Certificate through Letsencrypt</li>
 
 </ul>
 <h3>Back End</h3>
@@ -38,7 +39,6 @@
   <li>Testing with <a href="https://mochajs.org/">Mocha</a> + <a href="http://chaijs.com/">Chai</a></li>
   <li>Continuous integration and deployment with <a href="https://travis-ci.org/">Travis CI</a></li>
   <li>Continuous integration and deployment with <a href="https://heroku.com">Heroku</a></li>
-  <li>
 </ul>
 <h3>Database</h3>
 <ul>
