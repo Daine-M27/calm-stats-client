@@ -39,7 +39,7 @@ export default function Home(props) {
                 <div className="info-columns col-md-2 hidden-xs"></div>
                 <div className="info-columns col-md-8">
                     <div className=" font-raleway col-md-12 text-center text-dark-gray w200">
-                        <h3>Studies Supporting the Benefits of Meditation</h3>
+                        <h4>Studies Supporting the Benefits of Meditation</h4>
                     </div>
                     <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
                         <div className="bor-section pbl">
