@@ -20,16 +20,16 @@
 <ul>
   <li>React</li>
   <li>HTML</li>
-  <li>JavaScript</li>
-  <li>Bootstrap</li>
-  <li>FontAwesome for icons</li>
   <li>CSS</li>
-  <li>ChartJS</li>
-  <li>Auth0 for user authentication</li>
+  <li>JavaScript</li>
+  <li><a href="https://getbootstrap.com">Bootstrap</a></li>
+  <li><a href="https://fontawesome.io">FontAwesome</a> for icons</li>
+  <li><a href="https://chartjs.org">ChartJS</a></li>
+  <li><a href="https://auth0.com">Auth0</a> for user authentication</li>
   <li>Continuous integration and deployment with <a href="https://travis-ci.org">TravisCI</a></li>
   <li>Hosted at <a href="https://netlify.com">Netlify</a></li>
   <li>Testing with <a href="https://github.com/airbnb/enzyme">Enzyme</a></li>
-  <li>SSL Certificate through Letsencrypt</li>
+  <li>SSL Certificate through <a href="https://letsencrypt.org">Letsencrypt</a></li>
 </ul>
 <h3>Back End</h3>
 <ul>
