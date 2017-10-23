@@ -101,7 +101,7 @@ export default function Home(props) {
                     <div className="col-md-2"></div>
                     <div className="font-raleway text-dark-gray bg-white col-md-8 col-xs-12 text-holder pbl">
                         <div className="ptl">
-                            <h6 className="text-calm-blue ptl">What's this all about?</h6>
+                            <h6 className="text-calm-blue">What's this all about?</h6>
                             <p className="small font-raleway">
                                 Calm Stats was created to provide education on how meditation can change your life, and allow you to track meditation
                                 habits to learn what works best for you.  The simple user interface was developed to be minimalistic and unobtrusive
