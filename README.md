@@ -1,5 +1,5 @@
 <h1>Calm Stats</h1>
-<p> CalmStats is a responsive full-stack web app that allows users to chart the amount of time they spend meditation each day.</p>
+<p> CalmStats is a responsive full-stack web app that allows users to chart the amount of time they spend in meditation each day.</p>
 <img src="https://calmstats.com/homepage1.png">
 
 <h2>Introduction</h2>
