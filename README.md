@@ -30,7 +30,6 @@
   <li>Hosted at <a href="https://netlify.com">Netlify</a></li>
   <li>Testing with <a href="https://github.com/airbnb/enzyme">Enzyme</a></li>
   <li>SSL Certificate through Letsencrypt</li>
-
 </ul>
 <h3>Back End</h3>
 <ul>
@@ -43,7 +42,7 @@
 <h3>Database</h3>
 <ul>
     <li>MongoDB separately hosted at <a href="https://www.mlab.com">MLab</a></li>
-</ul
+</ul>
 <h3>Responsive</h3>
 <ul>
   <li>The app was built to be responsive and adjusts for any size screen.</li>
