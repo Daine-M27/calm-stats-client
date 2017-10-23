@@ -7,7 +7,7 @@ export default function Home(props) {
         <div className="home-page ">            
             <section className="col-md-12 upper-section man pan">
                 <div className="col-md-12 man pan ">
-                    <h1 className="element-animation-text title-call font-allura mtl ptl text-white mtsl ">Meditation can improve your life!</h1>
+                    <h1 className="element-animation-text title-call font-allura mtl ptl text-white ">Meditation can improve your life!</h1>
                 </div>
                 <div className="col-md-12 col-sm-12">
                     <div className="col-md-5 text-right">
@@ -36,12 +36,12 @@ export default function Home(props) {
             </section>
 
             <section className="col-md-12">
-                <div className="info-columns col-md-2"></div>
+                <div className="info-columns col-md-2 hidden-xs"></div>
                 <div className="info-columns col-md-8">
                     <div className=" font-raleway col-md-12 text-center text-dark-gray">
                         <h3>Studies Supporting the Benefits of Meditation</h3>
                     </div>
-                    <div className="pas pbl col-lg-4 text-center col-md-4 col-sm-12">
+                    <div className="pas col-lg-4 text-center col-md-4 col-sm-12">
                         <div className="bor-section pbl">
                             <h4 className="font-raleway text-light-blue pbm bbs"><span className="fa fa-university"> </span> Intellectual</h4>
                             <li> <a rel="noopener noreferrer" target="_blank" href="http://www.psyn-journal.com/article/S0925-4927%2810%2900288-X/abstract">Increases Gray Matter</a> </li>
@@ -66,7 +66,7 @@ export default function Home(props) {
                         </div>
                     </div>
                 </div>
-                <div className="info-columns col-md-2"></div>
+                <div className="info-columns col-md-2 hidden-xs"></div>
             </section>
 
 
@@ -97,11 +97,11 @@ export default function Home(props) {
                     </div>
                 </div>
 
-                <div className="col-md-12 bg-dark4 pbl">
+                <div className="col-md-12 col-xs-12 bg-dark4 pbl">
                     <div className="col-md-2"></div>
                     <div className="font-raleway text-dark-gray bg-white col-md-8 col-xs-12 text-holder pbl">
-                        <div className="pal ">
-                            <h6 className="text-calm-blue ptl">Whats this all about?</h6>
+                        <div className="ptl">
+                            <h6 className="text-calm-blue ptl">What's this all about?</h6>
                             <p className="small font-raleway">
                                 Calm Stats was created to provide education on how meditation can change your life, and allow you to track meditation
                                 habits to learn what works best for you.  The simple user interface was developed to be minimalistic and unobtrusive

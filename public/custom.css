@@ -1043,3 +1043,8 @@ div li>span {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007fb2', endColorstr='#ffffff', GradientType=0 );
 }
 
+.modal-icon{
+    font-size: 120px;
+    color: #00BAF2;
+}
+

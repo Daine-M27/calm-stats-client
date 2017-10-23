@@ -14,33 +14,33 @@
 }
 
 
-.navbar-header{
+.footer-header{
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(252, 252, 252);
 }
 
-.nav-logo{
+.footer-logo{
     color: #888;
     text-decoration: none;
-    font-size: 45px;
+    font-size: 1em;
     padding-left: 20px;
+    padding-top: 50px;
 
 }
 
-.nav-logo:hover{
+.footer-logo:hover{
 
     color: #00baf2;
     text-decoration: none;
 }
 
-.navbar-right{
+.footer-right{
     float: right;
     padding-right: 3em;
     padding-top: .75em;
 }
 
-.nav-button{
-    padding-right: 50px !important;
+.footer-button{
     font-family: 'Raleway', sans-serif;
     color: #888 !important;
     text-decoration: none;
@@ -48,12 +48,8 @@
 
 }
 
-.nav-button:hover{
+.footer-button:hover{
     color: #00baf2 !important;
     text-decoration: none;
 }
 
-
-.navbar {
-    margin-bottom: 0px !important;
-}

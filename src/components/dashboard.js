@@ -6,6 +6,7 @@ import StatisticSheet from './statisticSheet';
 import './css/dashboard.css';
 import DailyChart from './dailyChart';
 import auth0 from 'auth0-js';
+import ReactModal from 'react-modal';
 
 export default class Dashboard extends Component{
     constructor(props){
@@ -15,6 +16,7 @@ export default class Dashboard extends Component{
         this.serverUrl = 'https://gentle-sea-29060.herokuapp.com/api/v1';
         // this.serverUrl = 'http://localhost:3001/api/v1';
         this.state = {
+            showModal: false,
             graphData:{
                 labels: [],
                 datasets: [{
@@ -42,70 +44,48 @@ export default class Dashboard extends Component{
             inputValue: "",
             results: null,
             videoId: null,
+            player: null,
             calmStatsId: "",
             currentUserStats: null,
             averageStatistics: null,
             recordStatistics: null,
-
         };
 
-        // this.state.stats = {
-        //     currentStats:[
-        //         {
-        //             title: "Current Streak",
-        //             value: 4
-        //         },
-        //         {
-        //             title: "Total Number of Sessions",
-        //             value: 23
-        //         },
-        //         {
-        //             title: "Total Time ",
-        //             value: 227
-        //         },
-        //         {
-        //             title: "Average Time",
-        //             value: 42
-        //         }
-        //     ],
-        //     averageStats:[
-        //         {
-        //             title: "Per Week Average:",
-        //             value: "2 Hrs 34 Mins"
-        //         },
-        //         {
-        //             title: "Per Month Average:",
-        //             value: "20 Hrs 24 Mins"
-        //         },
-        //         {
-        //             title: "Per Session Average:",
-        //             value: "28 Mins"
-        //         },
-        //         {
-        //             title: "Daily streak average",
-        //             value: "23 Days"
-        //         },
-        //
-        //     ],
-        //     recordStats:[
-        //         {
-        //             title: "Total time in meditation:",
-        //             value: "4 Days 22 Hrs 12 Mins"
-        //         },
-        //         {
-        //             title: "Total Sessions:",
-        //             value: "250"
-        //         },
-        //         {
-        //             title: "Longest daily streak:",
-        //             value: "72 Days"
-        //         },
-        //         {
-        //             title: "Longest Session:",
-        //             value: "43 Mins"
-        //         },
-        //     ]
-        // }
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+
+        this.onReady = this.onReady.bind(this);
+        this.onPlayVideo = this.onPlayVideo.bind(this);
+
+        this.startMeditationSession = this.startMeditationSession.bind(this);
+        this.stopMeditationSession = this.stopMeditationSession.bind(this);
+
+        this.handleEnterKey = this.handleEnterKey.bind(this);
+    }
+
+    handleOpenModal () {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal () {
+        this.setState({ showModal: false });
+    }
+
+    handleEnterKey (event){
+        if(event.keyCode == 13){
+            this.sendSearch();
+        }
+    }
+
+    onReady(event) {
+        // console.log(`YouTube Player object for videoId: "${this.state.videoId}" has been saved to state.`);
+        this.setState({
+            player: event.target,
+        });
+    }
+
+    onPlayVideo() {
+        this.state.player.playVideo();
     }
 
     login() {
@@ -248,12 +228,12 @@ export default class Dashboard extends Component{
 
         fetch(this.serverUrl + '/sessions/start/' + dateMilliseconds+ '/' + calmId)
             .then(function (response) {
-                //console.log(response, 'response from set session');
-                return response.json();
+                console.log(response, 'response from set session');
+                //return response.json();
             })
-            .then(function(json) {
-                console.log('parsed json', json)
-            })
+            // .then(function(json) {
+            //     console.log('parsed json', json)
+            // })
             .catch(function(ex) {
                 console.log('parsing failed', ex)
             })
@@ -274,8 +254,11 @@ export default class Dashboard extends Component{
             })
             .then(function(json) {
                 // console.log('parsed json from stop session', json.currentUserStats);
-            that.getUserInfo()
+                that.getUserInfo()
 
+            })
+            .then(function(){
+                that.handleCloseModal()
             })
             .catch(function(ex) {
                 console.log('parsing failed', ex)
@@ -285,7 +268,7 @@ export default class Dashboard extends Component{
 
     componentDidMount(){
         this.getUserInfo();
-
+        document.addEventListener("keydown", this.handleEnterKey, false);
 
 
     }
@@ -342,23 +325,61 @@ export default class Dashboard extends Component{
            // position: 'fixed'
         };
 
-
+        const customStyles = {
+            overlay: {
+                backgroundColor   : 'rgba(0, 186, 242, 1)'
+            },
+            content : {
+                top : '50%',
+                left : '50%',
+                right : 'auto',
+                bottom : 'auto',
+                marginRight : '-50%',
+                transform : 'translate(-50%, -50%)',
+                border : '3px solid #cfcfcf',
+                padding : '20px'
+            }
+        };
 
 
 //console.log(this.props.auth);
         return (
 
             //wraps entire page
-            <div className="col-md-12 bg-calm">
+            <div className="container col-md-12 col-xs-12 bg-calm">
                 {
                     isAuthenticated() && (
+
                         <div className="col-md-12 pal">
-                            <div className="col-md-12 top-half">
-                                <div className="col-md-5 pal">
+                            {/*<button onClick={this.handleOpenModal}>Trigger Modal</button>*/}
+
+                            <ReactModal
+                                isOpen={this.state.showModal}
+                                contentLabel="End Session Dialog"
+                                style={customStyles}
+                            >
+                                <div className="text-center">
+                                    <i className="modal-icon fa fa-cloud text-center"></i>
+                                    <h6>Your session has ended</h6>
+                                    <h6>Close for updated statistics</h6>
+                                    <br/>
+                                    <button onClick={this.stopMeditationSession}>Close</button>
+                                </div>
+
+
+                                {/*<button onClick={this.handleCloseModal}>Close Modal</button>*/}
+                                {/*<br/>*/}
+                                {/*<button onClick={this.onPlayVideo}>Resume Session</button>*/}
+                                {/*<br/>*/}
+                                {/*<button onClick={this.stopMeditationSession}>Close</button>*/}
+                            </ReactModal>
+
+                            <div className="row top-half">
+                                <div className="col-md-5 col-xs-12 pal">
                                     <div className="col-md-12 pan bg-white" style={resultBoxStyle} >
 
                                         <div className="col-md-12 pan bbs">
-                                            <div className="col-md-11 pan brs" >
+                                            <div className="col-md-11 col-xs-11 pan brs" >
                                                 <input type="search" placeholder="Type to search..."
                                                        className="form-control" style={searchBoxStyle}
                                                        value={this.state.inputValue}
@@ -368,11 +389,12 @@ export default class Dashboard extends Component{
                                             <div className="col-md-1 pan text-center cursorp" >
                                                 <i className="fa fa-search" style={mglassStyle} onClick={() => {
                                                     this.sendSearch()
-                                                }}></i>
+                                                }}>
+                                                </i>
                                             </div>
                                         </div>
 
-                                        <div className="col-md-12 bg-grey-light pam bbs spaced-out text-calm-blue">
+                                        <div className="col-md-12 bg-grey-light pam bbs bts spaced-out text-calm-blue">
 
                                             <div className="col-md-8 brs">Video Title</div>
                                             <div className="col-md-4 text-center">
@@ -386,12 +408,14 @@ export default class Dashboard extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-7 col-sm-12 pal ">
+                                <div className="col-md-7 col-xs-12 pal ">
                                     <div className="col-md-12 bor pan" style={playerBoxStyle}>
                                         <YouTube videoId={this.state.videoId}
                                                  opts={opts}
                                                  onPlay={this.startMeditationSession.bind(this)}
-                                                 onPause={this.stopMeditationSession.bind(this)}
+                                                 onPause={this.handleOpenModal.bind(this)}
+                                                 onReady={this.onReady}
+                                                 // onEnd={this.stopMeditationSession().bind(this)}
                                         />
                                     </div>
                                 </div>
@@ -408,7 +432,7 @@ export default class Dashboard extends Component{
 
                                 </div>
 
-                                <div className="col-md-8 pal">
+                                <div className="col-md-8 col-xs-12 pal">
                                     <div className="col-md-12 pan bg-white" style={statBoxStyle}>
                                         <div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">
                                             <i className="fa fa-sun-o"></i>
@@ -419,32 +443,7 @@ export default class Dashboard extends Component{
                                 </div>
 
                                 <div className="col-md-2 side-space">
-
                                 </div>
-
-                                {/*<div className="col-md-4 pal">*/}
-
-                                {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
-                                {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
-                                {/*<i className="fa fa-sun-o"></i>*/}
-                                {/*&nbsp;Average*/}
-                                {/*</div>*/}
-                                {/*{this.state.averageStatistics}*/}
-                                {/*</div>*/}
-                                {/*</div>*/}
-
-                                {/*<div className="col-md-4 pal">*/}
-
-                                {/*<div className="col-md-12 pan bg-white" style={statBoxStyle}>*/}
-                                {/*<div className="col-md-12 pas bbs bg-grey-light text-center spaced-out">*/}
-                                {/*<i className="fa fa-sun-o"></i>*/}
-                                {/*&nbsp;Records*/}
-                                {/*</div>*/}
-                                {/*{this.state.recordStatistics}*/}
-                                {/*</div>*/}
-                                {/*</div>*/}
-
-
                             </div>
                         </div>
                             )

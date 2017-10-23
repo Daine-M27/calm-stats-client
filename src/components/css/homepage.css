@@ -101,6 +101,7 @@ li {
 
 
 .title-call{
+    padding-top: 2em !important;
     font-size: 80px;
     text-shadow: 5px #505050;
 }
@@ -113,6 +114,8 @@ bg-light-blue{
     font-size: 120px;
     color: #ffffff;
 }
+
+
 
 
 

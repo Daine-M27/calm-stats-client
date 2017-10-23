@@ -29,13 +29,9 @@ export default class Nav extends React.Component {
         const { isAuthenticated } = this.props.auth;
 
         return (
-            <div className="navigation-bar">
-                <nav className="navbar-header" style={navHeaderStyle}>
+            <div className="navigation-bar ">
+                <nav className="navbar-header navbar" style={navHeaderStyle}>
                     <a className="nav-logo" href="/">
-                        {/*<span className="">*/}
-                            {/*<img src="logo.png" style={logoStyle} />*/}
-                            {/*&nbsp;*/}
-                        {/*</span>*/}
                         <span className="pts font-allura">
                             Calm Stats
                         </span>
@@ -53,17 +49,20 @@ export default class Nav extends React.Component {
                         }
                         {
                             isAuthenticated() && (
-
-                                <li>
-                                    <a className="nav-button" href="/dashboard">
-                                        <i className="fa fa-area-chart"/>
-                                        &nbsp;&nbsp;Dashboard
-                                    </a>
-                                    <a className="nav-button" href="#" onClick={this.logout}>
-                                        <i className="fa fa-sign-out"></i>
-                                        &nbsp;&nbsp;Logout
-                                    </a>
-                                </li>
+                                <ul>
+                                    <li>
+                                        <a className="nav-button pts" href="/dashboard">
+                                            <i className="fa fa-area-chart"/>
+                                            &nbsp;&nbsp;Dashboard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="nav-button" href="#" onClick={this.logout}>
+                                            <i className="fa fa-sign-out"></i>
+                                            &nbsp;&nbsp;Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             )
                         }
                     </ul>
