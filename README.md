@@ -25,7 +25,7 @@
   <li>FontAwesome for icons</li>
   <li>CSS</li>
   <li>ChartJS</li>
-  <li>Auth0</li>
+  <li>Auth0 for user authentication</li>
   <li>Continuous integration and deployment with <a href="https://travis-ci.org">TravisCI</a></li>
   <li>Hosted at <a href="https://netlify.com">Netlify</a></li>
   <li>Testing with <a href="https://github.com/airbnb/enzyme">Enzyme</a></li>
