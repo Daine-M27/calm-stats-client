@@ -1,6 +1,6 @@
 <h1>Calm Stats</h1>
 <p> CalmStats is a responsive full-stack app that allows users to chart the amount of time they spend meditation each day.</p>
-<img src="https://calmstats.com/homepage.png">
+<img src="https://calmstats.com/homepage1.png">
 
 <h2>Introduction</h2>
 <p>The main focus of Calm Stats is to promote the use of meditation to improve daily life and medical conditions. Meditation is a proven skill that anyone can use to improve their life.</p>
