@@ -1,8 +1,6 @@
 <h1>Calm Stats</h1>
-<p><a href="https://calmstats.com></a> is a responsive full-stack app that allows users to chart the amount of time they spend meditation each day.</p>
-
-
-
+<p> CalmStats is a responsive full-stack app that allows users to chart the amount of time they spend meditation each day.</p>
+<img src="https://calmstats.com/homepage.png">
 
 <h2>Introduction</h2>
 <p>The main focus of Calm Stats is to promote the use of meditation to improve daily life and medical conditions. Meditation is a proven skill that anyone can use to improve their life.</p>
@@ -14,8 +12,8 @@
 
 <h2>Wireframes</h2>
 <p>Wireframes were created for each page.  A simple informative layout was chosen to keep a clean look and feel.</p>
-<p>A live version of the wireframes can be see at  <span><a href="https://daine-m27.github.io/finalCapstone">Calm Stats Wireframes</a></span>
-<img src="public/wireframes.png">
+<p>A live version of the wireframes can be see at  <span><a href="https://daine-m27.github.io/finalCapstone">Calm Stats Wireframes</a></span></p>
+<img src="https://calmstats.com/wireframes.png">
 
 <h2>Technology</h2>
 <h3>Front End</h3>
